@@ -108,24 +108,24 @@ used here is not publicly available.
 
 ### Description
 
-- **Analysis Workflow.Rmd: ** A single, integrated R Markdown file that
+- **Analysis Workflow.Rmd:** A single, integrated R Markdown file that
   contains the complete analysis pipeline, from data preprocessing to
   final model estimation and output generation. See
   **Analysis-Workflow.html** for the rendered output.
 
-- **Variable Codebook.Rmd: ** An R Markdown file that generates
+- **Variable Codebook.Rmd:** An R Markdown file that generates
   **Variable-Codebook.html**, which documents the detailed mapping of
   variables used in the analysis, along with key preprocessing steps.
 
-- **data/ ** Contains the original survey dataset used in the study. Due
+- **data/** Contains the original survey dataset used in the study. Due
   to data sharing restrictions, this file is not publicly accessible.
 
-- **figure/ ** Includes all figures generated in the analysis. Each file
+- **figure/** Includes all figures generated in the analysis. Each file
   is directly mapped to the corresponding figure in the manuscript or
   appendix.
 
-- **latex_table/ ** Contains text files of LaTeX-formatted tables used
-  in the manuscript and appendices, allowing direct integration into the
+- **latex_table/** Contains text files of LaTeX-formatted tables used in
+  the manuscript and appendices, allowing direct integration into the
   paper.
 
 ------------------------------------------------------------------------
