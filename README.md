@@ -82,28 +82,30 @@ used here is not publicly available.
 
 ``` bash
 📁 FTCW_Risk_Perception/
-├── Analysis Workflow.Rmd      # Main analysis script (reproduces all results)
-├── Analysis-Workflow.html     # Rendered HTML of the main analysis
-├── Variable Codebook.Rmd      # Variable mapping and data processing details
-├── Variable-Codebook.html     # Rendered HTML of the variable codebook
+├── Analysis Workflow.Rmd       # Main analysis script (reproduces all results)
+├── Analysis-Workflow.html      # Rendered HTML of the main analysis
+├── Variable Codebook.Rmd       # Variable mapping and data processing details
+├── Variable-Codebook.html      # Rendered HTML of the variable codebook
 │
 ├── 📁 data/
-│   └── 23_08.xlsx         # Raw survey data (not publicly distributable)
+│   └── 23_08.xlsx              # Raw survey data (not publicly distributable)
 │
 ├── 📁 figure/
-│   ├── rel_imp.pdf          # ✓ Figure 2 (Manuscript)
-│   ├── interaction_plot.pdf # ✓ Figure 3 (Manuscript)
-│   ├── missing_pattern.pdf  # ✓ Figure S1 (Appendix A)
-│   ├── traceplot.pdf        # ✓ Figure S2 (Appendix A)
-│   ├── modelplot_mice.pdf   # Internal diagnostic plot (not in manuscript)
-│   └── mosaicplot.pdf       # ✓ Figure S3 (Appendix C)
+│   ├── rel_imp.pdf             # ✓ Figure 2 (Manuscript)
+│   ├── interaction_plot.pdf    # ✓ Figure 3 (Manuscript)
+│   ├── missing_pattern.pdf     # ✓ Figure S1 (Appendix A)
+│   ├── traceplot.pdf           # ✓ Figure S2 (Appendix A)
+│   ├── modelplot_mice.pdf      # Internal diagnostic plot (not in manuscript)
+│   └── mosaicplot.pdf          # ✓ Figure S3 (Appendix C)
 │
 └── 📁 latex_table/
-    ├── table_1.txt          # ✓ Table 1 (Manuscript)
-    ├── table_s2.txt         # ✓ Table S1 (Appendix A)
-    ├── table_s3.txt         # ✓ Table S2 (Appendix B)
-    ├── rp-mice.txt          # ✓ Table S3 (Appendix D)
-    └── rp-interaction.txt   # ✓ Table S4 (Appendix E)
+    ├── table_1.txt             # ✓ Table 1 (Manuscript)
+    ├── table_s2.txt            # ✓ Table S1 (Appendix A)
+    ├── table_s3.txt            # ✓ Table S2 (Appendix B)
+    ├── rp-mice.txt             # ✓ Table S3 (Appendix D)
+    ├── rp-interaction.txt      # ✓ Table S4 (Appendix E)
+    ├── rp-sensitivity-cog.txt  # ✓ Table S5 (Appendix F)
+    └── rp-sensitivity-aff.txt  # ✓ Table S6 (Appendix F)
 ```
 
 ### Description

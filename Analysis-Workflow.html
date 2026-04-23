@@ -1593,25 +1593,30 @@ border-radius: 0px;
 
 
 <pre class="bash"><code>📁 FTCW_Risk_Perception/
- ├── analysis_code.Rmd     
- │
- ├── 📁 data/
- │    └── 23_08.xlsx            # Raw survey data
- │
- ├── 📁 figure/               
- │    ├── rel_imp.pdf           # ✓ Figure 2 (Manuscript)
- │    ├── interaction_plot.pdf  # ✓ Figure 3 (Manuscript)
- │    ├── missing_pattern.pdf   # ✓ Figure S1 (Appendix A)
- │    ├── traceplot.pdf         # ✓ Figure S2 (Appendix A)   
- │    ├── modelplot_mice.pdf    # Internal diagnostic plot (not in manuscript) 
- │    └── mosaicplot.pdf        # ✓ Figure S3 (Appendix C) 
- │
- └── 📁 latex table/         
-      ├── table_1.txt           # ✓ Table 1 (Manuscript)  
-      ├── table_s2.txt          # ✓ Table S1 (Appendix A)
-      ├── table_s3.txt          # ✓ Table S2 (Appendix B)
-      ├── rp-mice.txt           # ✓ Table S3 (Appendix D)
-      └── rp-interaction.txt    # ✓ Table S4 (Appendix E)</code></pre>
+├── Analysis Workflow.Rmd       # Main analysis script (reproduces all results)
+├── Analysis-Workflow.html      # Rendered HTML of the main analysis
+├── Variable Codebook.Rmd       # Variable mapping and data processing details
+├── Variable-Codebook.html      # Rendered HTML of the variable codebook
+│
+├── 📁 data/
+│   └── 23_08.xlsx              # Raw survey data (not publicly distributable)
+│
+├── 📁 figure/
+│   ├── rel_imp.pdf             # ✓ Figure 2 (Manuscript)
+│   ├── interaction_plot.pdf    # ✓ Figure 3 (Manuscript)
+│   ├── missing_pattern.pdf     # ✓ Figure S1 (Appendix A)
+│   ├── traceplot.pdf           # ✓ Figure S2 (Appendix A)
+│   ├── modelplot_mice.pdf      # Internal diagnostic plot (not in manuscript)
+│   └── mosaicplot.pdf          # ✓ Figure S3 (Appendix C)
+│
+└── 📁 latex_table/
+    ├── table_1.txt             # ✓ Table 1 (Manuscript)
+    ├── table_s2.txt            # ✓ Table S1 (Appendix A)
+    ├── table_s3.txt            # ✓ Table S2 (Appendix B)
+    ├── rp-mice.txt             # ✓ Table S3 (Appendix D)
+    ├── rp-interaction.txt      # ✓ Table S4 (Appendix E)
+    ├── rp-sensitivity-cog.txt  # ✓ Table S5 (Appendix F)
+    └── rp-sensitivity-aff.txt  # ✓ Table S6 (Appendix F)</code></pre>
 <hr />
 <div id="data-preperation" class="section level1">
 <h1>Data preperation</h1>
@@ -2103,12 +2108,12 @@ modelsummary(models_main,
 <!-- preamble start -->
 
     <script>
-      function styleCell_ydyod0ue2axk7nrztup8(i, j, css_id) {
-        var table = document.getElementById("tinytable_ydyod0ue2axk7nrztup8");
+      function styleCell_n7vuzducrtbfu7hdix6y(i, j, css_id) {
+        var table = document.getElementById("tinytable_n7vuzducrtbfu7hdix6y");
         table.rows[i].cells[j].classList.add(css_id);
       }
       function insertSpanRow(i, colspan, content) {
-        var table = document.getElementById('tinytable_ydyod0ue2axk7nrztup8');
+        var table = document.getElementById('tinytable_n7vuzducrtbfu7hdix6y');
         var newRow = table.insertRow(i);
         var newCell = newRow.insertCell(0);
         newCell.setAttribute("colspan", colspan);
@@ -2116,8 +2121,8 @@ modelsummary(models_main,
         // this may be unsafe, but innerText does not interpret <br>
         newCell.innerHTML = content;
       }
-      function spanCell_ydyod0ue2axk7nrztup8(i, j, rowspan, colspan) {
-        var table = document.getElementById("tinytable_ydyod0ue2axk7nrztup8");
+      function spanCell_n7vuzducrtbfu7hdix6y(i, j, rowspan, colspan) {
+        var table = document.getElementById("tinytable_n7vuzducrtbfu7hdix6y");
         const targetRow = table.rows[i];
         const targetCell = targetRow.cells[j];
         for (let r = 0; r < rowspan; r++) {
@@ -2143,120 +2148,120 @@ modelsummary(models_main,
         targetCell.rowSpan = rowspan;
         targetCell.colSpan = colspan;
       }
-window.addEventListener('load', function () { styleCell_ydyod0ue2axk7nrztup8(0, 0, 'tinytable_css_idy0tnjw2jwoq8y81bh4uc') })
-window.addEventListener('load', function () { styleCell_ydyod0ue2axk7nrztup8(0, 1, 'tinytable_css_idy7qcl9zct1xzsf4el983') })
-window.addEventListener('load', function () { styleCell_ydyod0ue2axk7nrztup8(0, 2, 'tinytable_css_idy7qcl9zct1xzsf4el983') })
-window.addEventListener('load', function () { styleCell_ydyod0ue2axk7nrztup8(1, 0, 'tinytable_css_idc3glnnl25mav6bjtowmr') })
-window.addEventListener('load', function () { styleCell_ydyod0ue2axk7nrztup8(1, 1, 'tinytable_css_id4rp0kab23b4il5d7zvh9') })
-window.addEventListener('load', function () { styleCell_ydyod0ue2axk7nrztup8(1, 2, 'tinytable_css_id4rp0kab23b4il5d7zvh9') })
-window.addEventListener('load', function () { styleCell_ydyod0ue2axk7nrztup8(2, 0, 'tinytable_css_idc3glnnl25mav6bjtowmr') })
-window.addEventListener('load', function () { styleCell_ydyod0ue2axk7nrztup8(2, 1, 'tinytable_css_id4rp0kab23b4il5d7zvh9') })
-window.addEventListener('load', function () { styleCell_ydyod0ue2axk7nrztup8(2, 2, 'tinytable_css_id4rp0kab23b4il5d7zvh9') })
-window.addEventListener('load', function () { styleCell_ydyod0ue2axk7nrztup8(3, 0, 'tinytable_css_idc3glnnl25mav6bjtowmr') })
-window.addEventListener('load', function () { styleCell_ydyod0ue2axk7nrztup8(3, 1, 'tinytable_css_id4rp0kab23b4il5d7zvh9') })
-window.addEventListener('load', function () { styleCell_ydyod0ue2axk7nrztup8(3, 2, 'tinytable_css_id4rp0kab23b4il5d7zvh9') })
-window.addEventListener('load', function () { styleCell_ydyod0ue2axk7nrztup8(4, 0, 'tinytable_css_idc3glnnl25mav6bjtowmr') })
-window.addEventListener('load', function () { styleCell_ydyod0ue2axk7nrztup8(4, 1, 'tinytable_css_id4rp0kab23b4il5d7zvh9') })
-window.addEventListener('load', function () { styleCell_ydyod0ue2axk7nrztup8(4, 2, 'tinytable_css_id4rp0kab23b4il5d7zvh9') })
-window.addEventListener('load', function () { styleCell_ydyod0ue2axk7nrztup8(5, 0, 'tinytable_css_idc3glnnl25mav6bjtowmr') })
-window.addEventListener('load', function () { styleCell_ydyod0ue2axk7nrztup8(5, 1, 'tinytable_css_id4rp0kab23b4il5d7zvh9') })
-window.addEventListener('load', function () { styleCell_ydyod0ue2axk7nrztup8(5, 2, 'tinytable_css_id4rp0kab23b4il5d7zvh9') })
-window.addEventListener('load', function () { styleCell_ydyod0ue2axk7nrztup8(6, 0, 'tinytable_css_idc3glnnl25mav6bjtowmr') })
-window.addEventListener('load', function () { styleCell_ydyod0ue2axk7nrztup8(6, 1, 'tinytable_css_id4rp0kab23b4il5d7zvh9') })
-window.addEventListener('load', function () { styleCell_ydyod0ue2axk7nrztup8(6, 2, 'tinytable_css_id4rp0kab23b4il5d7zvh9') })
-window.addEventListener('load', function () { styleCell_ydyod0ue2axk7nrztup8(7, 0, 'tinytable_css_idc3glnnl25mav6bjtowmr') })
-window.addEventListener('load', function () { styleCell_ydyod0ue2axk7nrztup8(7, 1, 'tinytable_css_id4rp0kab23b4il5d7zvh9') })
-window.addEventListener('load', function () { styleCell_ydyod0ue2axk7nrztup8(7, 2, 'tinytable_css_id4rp0kab23b4il5d7zvh9') })
-window.addEventListener('load', function () { styleCell_ydyod0ue2axk7nrztup8(8, 0, 'tinytable_css_idc3glnnl25mav6bjtowmr') })
-window.addEventListener('load', function () { styleCell_ydyod0ue2axk7nrztup8(8, 1, 'tinytable_css_id4rp0kab23b4il5d7zvh9') })
-window.addEventListener('load', function () { styleCell_ydyod0ue2axk7nrztup8(8, 2, 'tinytable_css_id4rp0kab23b4il5d7zvh9') })
-window.addEventListener('load', function () { styleCell_ydyod0ue2axk7nrztup8(9, 0, 'tinytable_css_idc3glnnl25mav6bjtowmr') })
-window.addEventListener('load', function () { styleCell_ydyod0ue2axk7nrztup8(9, 1, 'tinytable_css_id4rp0kab23b4il5d7zvh9') })
-window.addEventListener('load', function () { styleCell_ydyod0ue2axk7nrztup8(9, 2, 'tinytable_css_id4rp0kab23b4il5d7zvh9') })
-window.addEventListener('load', function () { styleCell_ydyod0ue2axk7nrztup8(10, 0, 'tinytable_css_idc3glnnl25mav6bjtowmr') })
-window.addEventListener('load', function () { styleCell_ydyod0ue2axk7nrztup8(10, 1, 'tinytable_css_id4rp0kab23b4il5d7zvh9') })
-window.addEventListener('load', function () { styleCell_ydyod0ue2axk7nrztup8(10, 2, 'tinytable_css_id4rp0kab23b4il5d7zvh9') })
-window.addEventListener('load', function () { styleCell_ydyod0ue2axk7nrztup8(11, 0, 'tinytable_css_idc3glnnl25mav6bjtowmr') })
-window.addEventListener('load', function () { styleCell_ydyod0ue2axk7nrztup8(11, 1, 'tinytable_css_id4rp0kab23b4il5d7zvh9') })
-window.addEventListener('load', function () { styleCell_ydyod0ue2axk7nrztup8(11, 2, 'tinytable_css_id4rp0kab23b4il5d7zvh9') })
-window.addEventListener('load', function () { styleCell_ydyod0ue2axk7nrztup8(12, 0, 'tinytable_css_idc3glnnl25mav6bjtowmr') })
-window.addEventListener('load', function () { styleCell_ydyod0ue2axk7nrztup8(12, 1, 'tinytable_css_id4rp0kab23b4il5d7zvh9') })
-window.addEventListener('load', function () { styleCell_ydyod0ue2axk7nrztup8(12, 2, 'tinytable_css_id4rp0kab23b4il5d7zvh9') })
-window.addEventListener('load', function () { styleCell_ydyod0ue2axk7nrztup8(13, 0, 'tinytable_css_idc3glnnl25mav6bjtowmr') })
-window.addEventListener('load', function () { styleCell_ydyod0ue2axk7nrztup8(13, 1, 'tinytable_css_id4rp0kab23b4il5d7zvh9') })
-window.addEventListener('load', function () { styleCell_ydyod0ue2axk7nrztup8(13, 2, 'tinytable_css_id4rp0kab23b4il5d7zvh9') })
-window.addEventListener('load', function () { styleCell_ydyod0ue2axk7nrztup8(14, 0, 'tinytable_css_idc3glnnl25mav6bjtowmr') })
-window.addEventListener('load', function () { styleCell_ydyod0ue2axk7nrztup8(14, 1, 'tinytable_css_id4rp0kab23b4il5d7zvh9') })
-window.addEventListener('load', function () { styleCell_ydyod0ue2axk7nrztup8(14, 2, 'tinytable_css_id4rp0kab23b4il5d7zvh9') })
-window.addEventListener('load', function () { styleCell_ydyod0ue2axk7nrztup8(15, 0, 'tinytable_css_idc3glnnl25mav6bjtowmr') })
-window.addEventListener('load', function () { styleCell_ydyod0ue2axk7nrztup8(15, 1, 'tinytable_css_id4rp0kab23b4il5d7zvh9') })
-window.addEventListener('load', function () { styleCell_ydyod0ue2axk7nrztup8(15, 2, 'tinytable_css_id4rp0kab23b4il5d7zvh9') })
-window.addEventListener('load', function () { styleCell_ydyod0ue2axk7nrztup8(16, 0, 'tinytable_css_idc3glnnl25mav6bjtowmr') })
-window.addEventListener('load', function () { styleCell_ydyod0ue2axk7nrztup8(16, 1, 'tinytable_css_id4rp0kab23b4il5d7zvh9') })
-window.addEventListener('load', function () { styleCell_ydyod0ue2axk7nrztup8(16, 2, 'tinytable_css_id4rp0kab23b4il5d7zvh9') })
-window.addEventListener('load', function () { styleCell_ydyod0ue2axk7nrztup8(17, 0, 'tinytable_css_idc3glnnl25mav6bjtowmr') })
-window.addEventListener('load', function () { styleCell_ydyod0ue2axk7nrztup8(17, 1, 'tinytable_css_id4rp0kab23b4il5d7zvh9') })
-window.addEventListener('load', function () { styleCell_ydyod0ue2axk7nrztup8(17, 2, 'tinytable_css_id4rp0kab23b4il5d7zvh9') })
-window.addEventListener('load', function () { styleCell_ydyod0ue2axk7nrztup8(18, 0, 'tinytable_css_idc3glnnl25mav6bjtowmr') })
-window.addEventListener('load', function () { styleCell_ydyod0ue2axk7nrztup8(18, 1, 'tinytable_css_id4rp0kab23b4il5d7zvh9') })
-window.addEventListener('load', function () { styleCell_ydyod0ue2axk7nrztup8(18, 2, 'tinytable_css_id4rp0kab23b4il5d7zvh9') })
-window.addEventListener('load', function () { styleCell_ydyod0ue2axk7nrztup8(19, 0, 'tinytable_css_idc3glnnl25mav6bjtowmr') })
-window.addEventListener('load', function () { styleCell_ydyod0ue2axk7nrztup8(19, 1, 'tinytable_css_id4rp0kab23b4il5d7zvh9') })
-window.addEventListener('load', function () { styleCell_ydyod0ue2axk7nrztup8(19, 2, 'tinytable_css_id4rp0kab23b4il5d7zvh9') })
-window.addEventListener('load', function () { styleCell_ydyod0ue2axk7nrztup8(20, 0, 'tinytable_css_idc3glnnl25mav6bjtowmr') })
-window.addEventListener('load', function () { styleCell_ydyod0ue2axk7nrztup8(20, 1, 'tinytable_css_id4rp0kab23b4il5d7zvh9') })
-window.addEventListener('load', function () { styleCell_ydyod0ue2axk7nrztup8(20, 2, 'tinytable_css_id4rp0kab23b4il5d7zvh9') })
-window.addEventListener('load', function () { styleCell_ydyod0ue2axk7nrztup8(21, 0, 'tinytable_css_idc3glnnl25mav6bjtowmr') })
-window.addEventListener('load', function () { styleCell_ydyod0ue2axk7nrztup8(21, 1, 'tinytable_css_id4rp0kab23b4il5d7zvh9') })
-window.addEventListener('load', function () { styleCell_ydyod0ue2axk7nrztup8(21, 2, 'tinytable_css_id4rp0kab23b4il5d7zvh9') })
-window.addEventListener('load', function () { styleCell_ydyod0ue2axk7nrztup8(22, 0, 'tinytable_css_idc3glnnl25mav6bjtowmr') })
-window.addEventListener('load', function () { styleCell_ydyod0ue2axk7nrztup8(22, 1, 'tinytable_css_id4rp0kab23b4il5d7zvh9') })
-window.addEventListener('load', function () { styleCell_ydyod0ue2axk7nrztup8(22, 2, 'tinytable_css_id4rp0kab23b4il5d7zvh9') })
-window.addEventListener('load', function () { styleCell_ydyod0ue2axk7nrztup8(23, 0, 'tinytable_css_idc3glnnl25mav6bjtowmr') })
-window.addEventListener('load', function () { styleCell_ydyod0ue2axk7nrztup8(23, 1, 'tinytable_css_id4rp0kab23b4il5d7zvh9') })
-window.addEventListener('load', function () { styleCell_ydyod0ue2axk7nrztup8(23, 2, 'tinytable_css_id4rp0kab23b4il5d7zvh9') })
-window.addEventListener('load', function () { styleCell_ydyod0ue2axk7nrztup8(24, 0, 'tinytable_css_idc3glnnl25mav6bjtowmr') })
-window.addEventListener('load', function () { styleCell_ydyod0ue2axk7nrztup8(24, 1, 'tinytable_css_id4rp0kab23b4il5d7zvh9') })
-window.addEventListener('load', function () { styleCell_ydyod0ue2axk7nrztup8(24, 2, 'tinytable_css_id4rp0kab23b4il5d7zvh9') })
-window.addEventListener('load', function () { styleCell_ydyod0ue2axk7nrztup8(25, 0, 'tinytable_css_idc3glnnl25mav6bjtowmr') })
-window.addEventListener('load', function () { styleCell_ydyod0ue2axk7nrztup8(25, 1, 'tinytable_css_id4rp0kab23b4il5d7zvh9') })
-window.addEventListener('load', function () { styleCell_ydyod0ue2axk7nrztup8(25, 2, 'tinytable_css_id4rp0kab23b4il5d7zvh9') })
-window.addEventListener('load', function () { styleCell_ydyod0ue2axk7nrztup8(26, 0, 'tinytable_css_idc3glnnl25mav6bjtowmr') })
-window.addEventListener('load', function () { styleCell_ydyod0ue2axk7nrztup8(26, 1, 'tinytable_css_id4rp0kab23b4il5d7zvh9') })
-window.addEventListener('load', function () { styleCell_ydyod0ue2axk7nrztup8(26, 2, 'tinytable_css_id4rp0kab23b4il5d7zvh9') })
-window.addEventListener('load', function () { styleCell_ydyod0ue2axk7nrztup8(27, 0, 'tinytable_css_idc3glnnl25mav6bjtowmr') })
-window.addEventListener('load', function () { styleCell_ydyod0ue2axk7nrztup8(27, 1, 'tinytable_css_id4rp0kab23b4il5d7zvh9') })
-window.addEventListener('load', function () { styleCell_ydyod0ue2axk7nrztup8(27, 2, 'tinytable_css_id4rp0kab23b4il5d7zvh9') })
-window.addEventListener('load', function () { styleCell_ydyod0ue2axk7nrztup8(28, 0, 'tinytable_css_idc3glnnl25mav6bjtowmr') })
-window.addEventListener('load', function () { styleCell_ydyod0ue2axk7nrztup8(28, 1, 'tinytable_css_id4rp0kab23b4il5d7zvh9') })
-window.addEventListener('load', function () { styleCell_ydyod0ue2axk7nrztup8(28, 2, 'tinytable_css_id4rp0kab23b4il5d7zvh9') })
-window.addEventListener('load', function () { styleCell_ydyod0ue2axk7nrztup8(29, 0, 'tinytable_css_idc3glnnl25mav6bjtowmr') })
-window.addEventListener('load', function () { styleCell_ydyod0ue2axk7nrztup8(29, 1, 'tinytable_css_id4rp0kab23b4il5d7zvh9') })
-window.addEventListener('load', function () { styleCell_ydyod0ue2axk7nrztup8(29, 2, 'tinytable_css_id4rp0kab23b4il5d7zvh9') })
-window.addEventListener('load', function () { styleCell_ydyod0ue2axk7nrztup8(30, 0, 'tinytable_css_idypqopnabxcaape7cjev9') })
-window.addEventListener('load', function () { styleCell_ydyod0ue2axk7nrztup8(30, 1, 'tinytable_css_id7bconktk4qw390vtq019') })
-window.addEventListener('load', function () { styleCell_ydyod0ue2axk7nrztup8(30, 2, 'tinytable_css_id7bconktk4qw390vtq019') })
-window.addEventListener('load', function () { styleCell_ydyod0ue2axk7nrztup8(31, 0, 'tinytable_css_idc3glnnl25mav6bjtowmr') })
-window.addEventListener('load', function () { styleCell_ydyod0ue2axk7nrztup8(31, 1, 'tinytable_css_id4rp0kab23b4il5d7zvh9') })
-window.addEventListener('load', function () { styleCell_ydyod0ue2axk7nrztup8(31, 2, 'tinytable_css_id4rp0kab23b4il5d7zvh9') })
-window.addEventListener('load', function () { styleCell_ydyod0ue2axk7nrztup8(32, 0, 'tinytable_css_idc3glnnl25mav6bjtowmr') })
-window.addEventListener('load', function () { styleCell_ydyod0ue2axk7nrztup8(32, 1, 'tinytable_css_id4rp0kab23b4il5d7zvh9') })
-window.addEventListener('load', function () { styleCell_ydyod0ue2axk7nrztup8(32, 2, 'tinytable_css_id4rp0kab23b4il5d7zvh9') })
-window.addEventListener('load', function () { styleCell_ydyod0ue2axk7nrztup8(33, 0, 'tinytable_css_idc3glnnl25mav6bjtowmr') })
-window.addEventListener('load', function () { styleCell_ydyod0ue2axk7nrztup8(33, 1, 'tinytable_css_idc3glnnl25mav6bjtowmr') })
-window.addEventListener('load', function () { styleCell_ydyod0ue2axk7nrztup8(33, 2, 'tinytable_css_idc3glnnl25mav6bjtowmr') })
+window.addEventListener('load', function () { styleCell_n7vuzducrtbfu7hdix6y(0, 0, 'tinytable_css_idg6rhqf29mhyxe2ck0bj2') })
+window.addEventListener('load', function () { styleCell_n7vuzducrtbfu7hdix6y(0, 1, 'tinytable_css_idxp8iylfzrncz32tajl2b') })
+window.addEventListener('load', function () { styleCell_n7vuzducrtbfu7hdix6y(0, 2, 'tinytable_css_idxp8iylfzrncz32tajl2b') })
+window.addEventListener('load', function () { styleCell_n7vuzducrtbfu7hdix6y(1, 0, 'tinytable_css_idwxaa593dluaymgu77aik') })
+window.addEventListener('load', function () { styleCell_n7vuzducrtbfu7hdix6y(1, 1, 'tinytable_css_ids940xxg49d7z7qlsz5gr') })
+window.addEventListener('load', function () { styleCell_n7vuzducrtbfu7hdix6y(1, 2, 'tinytable_css_ids940xxg49d7z7qlsz5gr') })
+window.addEventListener('load', function () { styleCell_n7vuzducrtbfu7hdix6y(2, 0, 'tinytable_css_idwxaa593dluaymgu77aik') })
+window.addEventListener('load', function () { styleCell_n7vuzducrtbfu7hdix6y(2, 1, 'tinytable_css_ids940xxg49d7z7qlsz5gr') })
+window.addEventListener('load', function () { styleCell_n7vuzducrtbfu7hdix6y(2, 2, 'tinytable_css_ids940xxg49d7z7qlsz5gr') })
+window.addEventListener('load', function () { styleCell_n7vuzducrtbfu7hdix6y(3, 0, 'tinytable_css_idwxaa593dluaymgu77aik') })
+window.addEventListener('load', function () { styleCell_n7vuzducrtbfu7hdix6y(3, 1, 'tinytable_css_ids940xxg49d7z7qlsz5gr') })
+window.addEventListener('load', function () { styleCell_n7vuzducrtbfu7hdix6y(3, 2, 'tinytable_css_ids940xxg49d7z7qlsz5gr') })
+window.addEventListener('load', function () { styleCell_n7vuzducrtbfu7hdix6y(4, 0, 'tinytable_css_idwxaa593dluaymgu77aik') })
+window.addEventListener('load', function () { styleCell_n7vuzducrtbfu7hdix6y(4, 1, 'tinytable_css_ids940xxg49d7z7qlsz5gr') })
+window.addEventListener('load', function () { styleCell_n7vuzducrtbfu7hdix6y(4, 2, 'tinytable_css_ids940xxg49d7z7qlsz5gr') })
+window.addEventListener('load', function () { styleCell_n7vuzducrtbfu7hdix6y(5, 0, 'tinytable_css_idwxaa593dluaymgu77aik') })
+window.addEventListener('load', function () { styleCell_n7vuzducrtbfu7hdix6y(5, 1, 'tinytable_css_ids940xxg49d7z7qlsz5gr') })
+window.addEventListener('load', function () { styleCell_n7vuzducrtbfu7hdix6y(5, 2, 'tinytable_css_ids940xxg49d7z7qlsz5gr') })
+window.addEventListener('load', function () { styleCell_n7vuzducrtbfu7hdix6y(6, 0, 'tinytable_css_idwxaa593dluaymgu77aik') })
+window.addEventListener('load', function () { styleCell_n7vuzducrtbfu7hdix6y(6, 1, 'tinytable_css_ids940xxg49d7z7qlsz5gr') })
+window.addEventListener('load', function () { styleCell_n7vuzducrtbfu7hdix6y(6, 2, 'tinytable_css_ids940xxg49d7z7qlsz5gr') })
+window.addEventListener('load', function () { styleCell_n7vuzducrtbfu7hdix6y(7, 0, 'tinytable_css_idwxaa593dluaymgu77aik') })
+window.addEventListener('load', function () { styleCell_n7vuzducrtbfu7hdix6y(7, 1, 'tinytable_css_ids940xxg49d7z7qlsz5gr') })
+window.addEventListener('load', function () { styleCell_n7vuzducrtbfu7hdix6y(7, 2, 'tinytable_css_ids940xxg49d7z7qlsz5gr') })
+window.addEventListener('load', function () { styleCell_n7vuzducrtbfu7hdix6y(8, 0, 'tinytable_css_idwxaa593dluaymgu77aik') })
+window.addEventListener('load', function () { styleCell_n7vuzducrtbfu7hdix6y(8, 1, 'tinytable_css_ids940xxg49d7z7qlsz5gr') })
+window.addEventListener('load', function () { styleCell_n7vuzducrtbfu7hdix6y(8, 2, 'tinytable_css_ids940xxg49d7z7qlsz5gr') })
+window.addEventListener('load', function () { styleCell_n7vuzducrtbfu7hdix6y(9, 0, 'tinytable_css_idwxaa593dluaymgu77aik') })
+window.addEventListener('load', function () { styleCell_n7vuzducrtbfu7hdix6y(9, 1, 'tinytable_css_ids940xxg49d7z7qlsz5gr') })
+window.addEventListener('load', function () { styleCell_n7vuzducrtbfu7hdix6y(9, 2, 'tinytable_css_ids940xxg49d7z7qlsz5gr') })
+window.addEventListener('load', function () { styleCell_n7vuzducrtbfu7hdix6y(10, 0, 'tinytable_css_idwxaa593dluaymgu77aik') })
+window.addEventListener('load', function () { styleCell_n7vuzducrtbfu7hdix6y(10, 1, 'tinytable_css_ids940xxg49d7z7qlsz5gr') })
+window.addEventListener('load', function () { styleCell_n7vuzducrtbfu7hdix6y(10, 2, 'tinytable_css_ids940xxg49d7z7qlsz5gr') })
+window.addEventListener('load', function () { styleCell_n7vuzducrtbfu7hdix6y(11, 0, 'tinytable_css_idwxaa593dluaymgu77aik') })
+window.addEventListener('load', function () { styleCell_n7vuzducrtbfu7hdix6y(11, 1, 'tinytable_css_ids940xxg49d7z7qlsz5gr') })
+window.addEventListener('load', function () { styleCell_n7vuzducrtbfu7hdix6y(11, 2, 'tinytable_css_ids940xxg49d7z7qlsz5gr') })
+window.addEventListener('load', function () { styleCell_n7vuzducrtbfu7hdix6y(12, 0, 'tinytable_css_idwxaa593dluaymgu77aik') })
+window.addEventListener('load', function () { styleCell_n7vuzducrtbfu7hdix6y(12, 1, 'tinytable_css_ids940xxg49d7z7qlsz5gr') })
+window.addEventListener('load', function () { styleCell_n7vuzducrtbfu7hdix6y(12, 2, 'tinytable_css_ids940xxg49d7z7qlsz5gr') })
+window.addEventListener('load', function () { styleCell_n7vuzducrtbfu7hdix6y(13, 0, 'tinytable_css_idwxaa593dluaymgu77aik') })
+window.addEventListener('load', function () { styleCell_n7vuzducrtbfu7hdix6y(13, 1, 'tinytable_css_ids940xxg49d7z7qlsz5gr') })
+window.addEventListener('load', function () { styleCell_n7vuzducrtbfu7hdix6y(13, 2, 'tinytable_css_ids940xxg49d7z7qlsz5gr') })
+window.addEventListener('load', function () { styleCell_n7vuzducrtbfu7hdix6y(14, 0, 'tinytable_css_idwxaa593dluaymgu77aik') })
+window.addEventListener('load', function () { styleCell_n7vuzducrtbfu7hdix6y(14, 1, 'tinytable_css_ids940xxg49d7z7qlsz5gr') })
+window.addEventListener('load', function () { styleCell_n7vuzducrtbfu7hdix6y(14, 2, 'tinytable_css_ids940xxg49d7z7qlsz5gr') })
+window.addEventListener('load', function () { styleCell_n7vuzducrtbfu7hdix6y(15, 0, 'tinytable_css_idwxaa593dluaymgu77aik') })
+window.addEventListener('load', function () { styleCell_n7vuzducrtbfu7hdix6y(15, 1, 'tinytable_css_ids940xxg49d7z7qlsz5gr') })
+window.addEventListener('load', function () { styleCell_n7vuzducrtbfu7hdix6y(15, 2, 'tinytable_css_ids940xxg49d7z7qlsz5gr') })
+window.addEventListener('load', function () { styleCell_n7vuzducrtbfu7hdix6y(16, 0, 'tinytable_css_idwxaa593dluaymgu77aik') })
+window.addEventListener('load', function () { styleCell_n7vuzducrtbfu7hdix6y(16, 1, 'tinytable_css_ids940xxg49d7z7qlsz5gr') })
+window.addEventListener('load', function () { styleCell_n7vuzducrtbfu7hdix6y(16, 2, 'tinytable_css_ids940xxg49d7z7qlsz5gr') })
+window.addEventListener('load', function () { styleCell_n7vuzducrtbfu7hdix6y(17, 0, 'tinytable_css_idwxaa593dluaymgu77aik') })
+window.addEventListener('load', function () { styleCell_n7vuzducrtbfu7hdix6y(17, 1, 'tinytable_css_ids940xxg49d7z7qlsz5gr') })
+window.addEventListener('load', function () { styleCell_n7vuzducrtbfu7hdix6y(17, 2, 'tinytable_css_ids940xxg49d7z7qlsz5gr') })
+window.addEventListener('load', function () { styleCell_n7vuzducrtbfu7hdix6y(18, 0, 'tinytable_css_idwxaa593dluaymgu77aik') })
+window.addEventListener('load', function () { styleCell_n7vuzducrtbfu7hdix6y(18, 1, 'tinytable_css_ids940xxg49d7z7qlsz5gr') })
+window.addEventListener('load', function () { styleCell_n7vuzducrtbfu7hdix6y(18, 2, 'tinytable_css_ids940xxg49d7z7qlsz5gr') })
+window.addEventListener('load', function () { styleCell_n7vuzducrtbfu7hdix6y(19, 0, 'tinytable_css_idwxaa593dluaymgu77aik') })
+window.addEventListener('load', function () { styleCell_n7vuzducrtbfu7hdix6y(19, 1, 'tinytable_css_ids940xxg49d7z7qlsz5gr') })
+window.addEventListener('load', function () { styleCell_n7vuzducrtbfu7hdix6y(19, 2, 'tinytable_css_ids940xxg49d7z7qlsz5gr') })
+window.addEventListener('load', function () { styleCell_n7vuzducrtbfu7hdix6y(20, 0, 'tinytable_css_idwxaa593dluaymgu77aik') })
+window.addEventListener('load', function () { styleCell_n7vuzducrtbfu7hdix6y(20, 1, 'tinytable_css_ids940xxg49d7z7qlsz5gr') })
+window.addEventListener('load', function () { styleCell_n7vuzducrtbfu7hdix6y(20, 2, 'tinytable_css_ids940xxg49d7z7qlsz5gr') })
+window.addEventListener('load', function () { styleCell_n7vuzducrtbfu7hdix6y(21, 0, 'tinytable_css_idwxaa593dluaymgu77aik') })
+window.addEventListener('load', function () { styleCell_n7vuzducrtbfu7hdix6y(21, 1, 'tinytable_css_ids940xxg49d7z7qlsz5gr') })
+window.addEventListener('load', function () { styleCell_n7vuzducrtbfu7hdix6y(21, 2, 'tinytable_css_ids940xxg49d7z7qlsz5gr') })
+window.addEventListener('load', function () { styleCell_n7vuzducrtbfu7hdix6y(22, 0, 'tinytable_css_idwxaa593dluaymgu77aik') })
+window.addEventListener('load', function () { styleCell_n7vuzducrtbfu7hdix6y(22, 1, 'tinytable_css_ids940xxg49d7z7qlsz5gr') })
+window.addEventListener('load', function () { styleCell_n7vuzducrtbfu7hdix6y(22, 2, 'tinytable_css_ids940xxg49d7z7qlsz5gr') })
+window.addEventListener('load', function () { styleCell_n7vuzducrtbfu7hdix6y(23, 0, 'tinytable_css_idwxaa593dluaymgu77aik') })
+window.addEventListener('load', function () { styleCell_n7vuzducrtbfu7hdix6y(23, 1, 'tinytable_css_ids940xxg49d7z7qlsz5gr') })
+window.addEventListener('load', function () { styleCell_n7vuzducrtbfu7hdix6y(23, 2, 'tinytable_css_ids940xxg49d7z7qlsz5gr') })
+window.addEventListener('load', function () { styleCell_n7vuzducrtbfu7hdix6y(24, 0, 'tinytable_css_idwxaa593dluaymgu77aik') })
+window.addEventListener('load', function () { styleCell_n7vuzducrtbfu7hdix6y(24, 1, 'tinytable_css_ids940xxg49d7z7qlsz5gr') })
+window.addEventListener('load', function () { styleCell_n7vuzducrtbfu7hdix6y(24, 2, 'tinytable_css_ids940xxg49d7z7qlsz5gr') })
+window.addEventListener('load', function () { styleCell_n7vuzducrtbfu7hdix6y(25, 0, 'tinytable_css_idwxaa593dluaymgu77aik') })
+window.addEventListener('load', function () { styleCell_n7vuzducrtbfu7hdix6y(25, 1, 'tinytable_css_ids940xxg49d7z7qlsz5gr') })
+window.addEventListener('load', function () { styleCell_n7vuzducrtbfu7hdix6y(25, 2, 'tinytable_css_ids940xxg49d7z7qlsz5gr') })
+window.addEventListener('load', function () { styleCell_n7vuzducrtbfu7hdix6y(26, 0, 'tinytable_css_idwxaa593dluaymgu77aik') })
+window.addEventListener('load', function () { styleCell_n7vuzducrtbfu7hdix6y(26, 1, 'tinytable_css_ids940xxg49d7z7qlsz5gr') })
+window.addEventListener('load', function () { styleCell_n7vuzducrtbfu7hdix6y(26, 2, 'tinytable_css_ids940xxg49d7z7qlsz5gr') })
+window.addEventListener('load', function () { styleCell_n7vuzducrtbfu7hdix6y(27, 0, 'tinytable_css_idwxaa593dluaymgu77aik') })
+window.addEventListener('load', function () { styleCell_n7vuzducrtbfu7hdix6y(27, 1, 'tinytable_css_ids940xxg49d7z7qlsz5gr') })
+window.addEventListener('load', function () { styleCell_n7vuzducrtbfu7hdix6y(27, 2, 'tinytable_css_ids940xxg49d7z7qlsz5gr') })
+window.addEventListener('load', function () { styleCell_n7vuzducrtbfu7hdix6y(28, 0, 'tinytable_css_idwxaa593dluaymgu77aik') })
+window.addEventListener('load', function () { styleCell_n7vuzducrtbfu7hdix6y(28, 1, 'tinytable_css_ids940xxg49d7z7qlsz5gr') })
+window.addEventListener('load', function () { styleCell_n7vuzducrtbfu7hdix6y(28, 2, 'tinytable_css_ids940xxg49d7z7qlsz5gr') })
+window.addEventListener('load', function () { styleCell_n7vuzducrtbfu7hdix6y(29, 0, 'tinytable_css_idwxaa593dluaymgu77aik') })
+window.addEventListener('load', function () { styleCell_n7vuzducrtbfu7hdix6y(29, 1, 'tinytable_css_ids940xxg49d7z7qlsz5gr') })
+window.addEventListener('load', function () { styleCell_n7vuzducrtbfu7hdix6y(29, 2, 'tinytable_css_ids940xxg49d7z7qlsz5gr') })
+window.addEventListener('load', function () { styleCell_n7vuzducrtbfu7hdix6y(30, 0, 'tinytable_css_idycc6v1gm946fh8dwz7s6') })
+window.addEventListener('load', function () { styleCell_n7vuzducrtbfu7hdix6y(30, 1, 'tinytable_css_idh7n7nnqbqhdmrzyz9h28') })
+window.addEventListener('load', function () { styleCell_n7vuzducrtbfu7hdix6y(30, 2, 'tinytable_css_idh7n7nnqbqhdmrzyz9h28') })
+window.addEventListener('load', function () { styleCell_n7vuzducrtbfu7hdix6y(31, 0, 'tinytable_css_idwxaa593dluaymgu77aik') })
+window.addEventListener('load', function () { styleCell_n7vuzducrtbfu7hdix6y(31, 1, 'tinytable_css_ids940xxg49d7z7qlsz5gr') })
+window.addEventListener('load', function () { styleCell_n7vuzducrtbfu7hdix6y(31, 2, 'tinytable_css_ids940xxg49d7z7qlsz5gr') })
+window.addEventListener('load', function () { styleCell_n7vuzducrtbfu7hdix6y(32, 0, 'tinytable_css_idwxaa593dluaymgu77aik') })
+window.addEventListener('load', function () { styleCell_n7vuzducrtbfu7hdix6y(32, 1, 'tinytable_css_ids940xxg49d7z7qlsz5gr') })
+window.addEventListener('load', function () { styleCell_n7vuzducrtbfu7hdix6y(32, 2, 'tinytable_css_ids940xxg49d7z7qlsz5gr') })
+window.addEventListener('load', function () { styleCell_n7vuzducrtbfu7hdix6y(33, 0, 'tinytable_css_idwxaa593dluaymgu77aik') })
+window.addEventListener('load', function () { styleCell_n7vuzducrtbfu7hdix6y(33, 1, 'tinytable_css_idwxaa593dluaymgu77aik') })
+window.addEventListener('load', function () { styleCell_n7vuzducrtbfu7hdix6y(33, 2, 'tinytable_css_idwxaa593dluaymgu77aik') })
     </script>
 
     <style>
-.table td.tinytable_css_idy0tnjw2jwoq8y81bh4uc, .table th.tinytable_css_idy0tnjw2jwoq8y81bh4uc { text-align: left; border-bottom: solid 0.1em #d3d8dc; }
-.table td.tinytable_css_idy7qcl9zct1xzsf4el983, .table th.tinytable_css_idy7qcl9zct1xzsf4el983 { text-align: center; border-bottom: solid 0.1em #d3d8dc; }
-.table td.tinytable_css_idc3glnnl25mav6bjtowmr, .table th.tinytable_css_idc3glnnl25mav6bjtowmr { text-align: left; }
-.table td.tinytable_css_id4rp0kab23b4il5d7zvh9, .table th.tinytable_css_id4rp0kab23b4il5d7zvh9 { text-align: center; }
-.table td.tinytable_css_idypqopnabxcaape7cjev9, .table th.tinytable_css_idypqopnabxcaape7cjev9 { border-bottom: solid 0.05em black; text-align: left; }
-.table td.tinytable_css_id7bconktk4qw390vtq019, .table th.tinytable_css_id7bconktk4qw390vtq019 { border-bottom: solid 0.05em black; text-align: center; }
+.table td.tinytable_css_idg6rhqf29mhyxe2ck0bj2, .table th.tinytable_css_idg6rhqf29mhyxe2ck0bj2 { text-align: left; border-bottom: solid 0.1em #d3d8dc; }
+.table td.tinytable_css_idxp8iylfzrncz32tajl2b, .table th.tinytable_css_idxp8iylfzrncz32tajl2b { text-align: center; border-bottom: solid 0.1em #d3d8dc; }
+.table td.tinytable_css_idwxaa593dluaymgu77aik, .table th.tinytable_css_idwxaa593dluaymgu77aik { text-align: left; }
+.table td.tinytable_css_ids940xxg49d7z7qlsz5gr, .table th.tinytable_css_ids940xxg49d7z7qlsz5gr { text-align: center; }
+.table td.tinytable_css_idycc6v1gm946fh8dwz7s6, .table th.tinytable_css_idycc6v1gm946fh8dwz7s6 { border-bottom: solid 0.05em black; text-align: left; }
+.table td.tinytable_css_idh7n7nnqbqhdmrzyz9h28, .table th.tinytable_css_idh7n7nnqbqhdmrzyz9h28 { border-bottom: solid 0.05em black; text-align: center; }
 </style>
     <div class="container">
-      <table class="table table-borderless" id="tinytable_ydyod0ue2axk7nrztup8" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing="true">
+      <table class="table table-borderless" id="tinytable_n7vuzducrtbfu7hdix6y" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing="true">
         <thead>
         <caption>Coefficient estimates for main regression analysis (Table 1).</caption>
               <tr>
@@ -3778,6 +3783,974 @@ window.addEventListener('load', function () { styleCell_m4zreel9hfaw01bky14l(37,
                   <td>R2 Adj.        </td>
                   <td>\num{0.565}                                </td>
                   <td>\num{0.580}                                </td>
+                </tr>
+        </tbody>
+      </table>
+    </div>
+<!-- hack to avoid NA insertion in last line -->
+<pre class="r"><code>sink(file = NULL)</code></pre>
+</div>
+<div id="table-s5-and-table-s6-sensitivity-analysis-with-respect-to-information-trust-it" class="section level2">
+<h2>Table S5 and Table S6: Sensitivity analysis with respect to
+information trust (IT)</h2>
+<pre class="r"><code># ==============================================================================
+# Table S5: Sensitivity analyses for cognitive risk perception across alternative model specifications
+# Table S6: Sensitivity analyses for affective risk perception across alternative model specifications
+# Role: Sensitivity analyses assessing the robustness of the results to the inclusion of information trust (IT), which may conceptually overlap with risk perception. 
+# Mapping:  [Appendix F] Table S5 and Table S6
+# Output: Saved as &#39;./latex table/rp-sensitivity-cog.txt&#39; and &#39;./latex table/rp-sensitivity-aff.txt&#39;
+# ==============================================================================
+
+fit_cog_full = lm(
+  cog ~ ara + age + sex + presid + exag + ideo + job + class + edu + presid*exag,
+  data = data_na,
+  weights = wt
+)
+
+fit_cog_main = lm(
+  cog ~ ara + age + sex + presid + exag + ideo + job + class + edu,
+  data = data_na,
+  weights = wt
+)
+
+fit_cog_noIT = lm(
+  cog ~ ara + age + sex + presid + ideo + job + class + edu,
+  data = data_na,
+  weights = wt
+)
+
+fit_aff_full = lm(
+  aff ~ ara + age + sex + presid + exag + ideo + job + class + edu + presid*exag,
+  data = data_na,
+  weights = wt
+)
+
+fit_aff_main = lm(
+  aff ~ ara + age + sex + presid + exag + ideo + job + class + edu,
+  data = data_na,
+  weights = wt
+)
+
+fit_aff_noIT = lm(
+  aff ~ ara + age + sex + presid + ideo + job + class + edu,
+  data = data_na,
+  weights = wt
+)
+
+models_cog = list(
+  &quot;Full&quot; = fit_cog_full,
+  &quot;No interaction&quot; = fit_cog_main,
+  &quot;No IT&quot; = fit_cog_noIT
+)
+
+sink(file = &quot;./latex table/rp-sensitivity-cog.txt&quot;)
+
+modelsummary(
+  models_cog,
+  fmt = 2,
+  stars = TRUE,
+  statistic = NULL,
+  estimate = &quot;{estimate}{stars} [{conf.low}, {conf.high}]&quot;,
+  coef_omit = &quot;Intercept&quot;,
+  gof_omit = &quot;Num.Obs.|DF|Deviance|F|Log.Lik.|RMSE|AIC|BIC&quot;,
+  title = &quot;Cognitive risk perception: sensitivity analysis across alternative model specifications.&quot;,
+  output = &quot;latex&quot;,
+  notes = list(&quot;+ p &lt; 0.1, * p &lt; 0.05, ** p &lt; 0.01, *** p &lt; 0.001&quot;)
+)</code></pre>
+<!-- preamble start -->
+
+    <script>
+      function styleCell_q1dj81sr9feqhx9j6gdp(i, j, css_id) {
+        var table = document.getElementById("tinytable_q1dj81sr9feqhx9j6gdp");
+        table.rows[i].cells[j].classList.add(css_id);
+      }
+      function insertSpanRow(i, colspan, content) {
+        var table = document.getElementById('tinytable_q1dj81sr9feqhx9j6gdp');
+        var newRow = table.insertRow(i);
+        var newCell = newRow.insertCell(0);
+        newCell.setAttribute("colspan", colspan);
+        // newCell.innerText = content;
+        // this may be unsafe, but innerText does not interpret <br>
+        newCell.innerHTML = content;
+      }
+      function spanCell_q1dj81sr9feqhx9j6gdp(i, j, rowspan, colspan) {
+        var table = document.getElementById("tinytable_q1dj81sr9feqhx9j6gdp");
+        const targetRow = table.rows[i];
+        const targetCell = targetRow.cells[j];
+        for (let r = 0; r < rowspan; r++) {
+          // Only start deleting cells to the right for the first row (r == 0)
+          if (r === 0) {
+            // Delete cells to the right of the target cell in the first row
+            for (let c = colspan - 1; c > 0; c--) {
+              if (table.rows[i + r].cells[j + c]) {
+                table.rows[i + r].deleteCell(j + c);
+              }
+            }
+          }
+          // For rows below the first, delete starting from the target column
+          if (r > 0) {
+            for (let c = colspan - 1; c >= 0; c--) {
+              if (table.rows[i + r] && table.rows[i + r].cells[j]) {
+                table.rows[i + r].deleteCell(j);
+              }
+            }
+          }
+        }
+        // Set rowspan and colspan of the target cell
+        targetCell.rowSpan = rowspan;
+        targetCell.colSpan = colspan;
+      }
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(0, 0, 'tinytable_css_iduewk0ij0imj0cegjupi7') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(0, 1, 'tinytable_css_id8ypdzsh7e13bj5rvvxbx') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(0, 2, 'tinytable_css_id8ypdzsh7e13bj5rvvxbx') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(0, 3, 'tinytable_css_id8ypdzsh7e13bj5rvvxbx') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(1, 0, 'tinytable_css_idey0m2a0brnjbzzk9l29y') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(1, 1, 'tinytable_css_iddonowwrgne4wcmty8ypf') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(1, 2, 'tinytable_css_iddonowwrgne4wcmty8ypf') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(1, 3, 'tinytable_css_iddonowwrgne4wcmty8ypf') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(2, 0, 'tinytable_css_idey0m2a0brnjbzzk9l29y') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(2, 1, 'tinytable_css_iddonowwrgne4wcmty8ypf') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(2, 2, 'tinytable_css_iddonowwrgne4wcmty8ypf') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(2, 3, 'tinytable_css_iddonowwrgne4wcmty8ypf') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(3, 0, 'tinytable_css_idey0m2a0brnjbzzk9l29y') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(3, 1, 'tinytable_css_iddonowwrgne4wcmty8ypf') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(3, 2, 'tinytable_css_iddonowwrgne4wcmty8ypf') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(3, 3, 'tinytable_css_iddonowwrgne4wcmty8ypf') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(4, 0, 'tinytable_css_idey0m2a0brnjbzzk9l29y') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(4, 1, 'tinytable_css_iddonowwrgne4wcmty8ypf') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(4, 2, 'tinytable_css_iddonowwrgne4wcmty8ypf') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(4, 3, 'tinytable_css_iddonowwrgne4wcmty8ypf') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(5, 0, 'tinytable_css_idey0m2a0brnjbzzk9l29y') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(5, 1, 'tinytable_css_iddonowwrgne4wcmty8ypf') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(5, 2, 'tinytable_css_iddonowwrgne4wcmty8ypf') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(5, 3, 'tinytable_css_iddonowwrgne4wcmty8ypf') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(6, 0, 'tinytable_css_idey0m2a0brnjbzzk9l29y') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(6, 1, 'tinytable_css_iddonowwrgne4wcmty8ypf') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(6, 2, 'tinytable_css_iddonowwrgne4wcmty8ypf') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(6, 3, 'tinytable_css_iddonowwrgne4wcmty8ypf') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(7, 0, 'tinytable_css_idey0m2a0brnjbzzk9l29y') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(7, 1, 'tinytable_css_iddonowwrgne4wcmty8ypf') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(7, 2, 'tinytable_css_iddonowwrgne4wcmty8ypf') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(7, 3, 'tinytable_css_iddonowwrgne4wcmty8ypf') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(8, 0, 'tinytable_css_idey0m2a0brnjbzzk9l29y') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(8, 1, 'tinytable_css_iddonowwrgne4wcmty8ypf') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(8, 2, 'tinytable_css_iddonowwrgne4wcmty8ypf') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(8, 3, 'tinytable_css_iddonowwrgne4wcmty8ypf') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(9, 0, 'tinytable_css_idey0m2a0brnjbzzk9l29y') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(9, 1, 'tinytable_css_iddonowwrgne4wcmty8ypf') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(9, 2, 'tinytable_css_iddonowwrgne4wcmty8ypf') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(9, 3, 'tinytable_css_iddonowwrgne4wcmty8ypf') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(10, 0, 'tinytable_css_idey0m2a0brnjbzzk9l29y') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(10, 1, 'tinytable_css_iddonowwrgne4wcmty8ypf') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(10, 2, 'tinytable_css_iddonowwrgne4wcmty8ypf') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(10, 3, 'tinytable_css_iddonowwrgne4wcmty8ypf') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(11, 0, 'tinytable_css_idey0m2a0brnjbzzk9l29y') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(11, 1, 'tinytable_css_iddonowwrgne4wcmty8ypf') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(11, 2, 'tinytable_css_iddonowwrgne4wcmty8ypf') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(11, 3, 'tinytable_css_iddonowwrgne4wcmty8ypf') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(12, 0, 'tinytable_css_idey0m2a0brnjbzzk9l29y') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(12, 1, 'tinytable_css_iddonowwrgne4wcmty8ypf') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(12, 2, 'tinytable_css_iddonowwrgne4wcmty8ypf') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(12, 3, 'tinytable_css_iddonowwrgne4wcmty8ypf') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(13, 0, 'tinytable_css_idey0m2a0brnjbzzk9l29y') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(13, 1, 'tinytable_css_iddonowwrgne4wcmty8ypf') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(13, 2, 'tinytable_css_iddonowwrgne4wcmty8ypf') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(13, 3, 'tinytable_css_iddonowwrgne4wcmty8ypf') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(14, 0, 'tinytable_css_idey0m2a0brnjbzzk9l29y') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(14, 1, 'tinytable_css_iddonowwrgne4wcmty8ypf') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(14, 2, 'tinytable_css_iddonowwrgne4wcmty8ypf') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(14, 3, 'tinytable_css_iddonowwrgne4wcmty8ypf') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(15, 0, 'tinytable_css_idey0m2a0brnjbzzk9l29y') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(15, 1, 'tinytable_css_iddonowwrgne4wcmty8ypf') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(15, 2, 'tinytable_css_iddonowwrgne4wcmty8ypf') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(15, 3, 'tinytable_css_iddonowwrgne4wcmty8ypf') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(16, 0, 'tinytable_css_idey0m2a0brnjbzzk9l29y') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(16, 1, 'tinytable_css_iddonowwrgne4wcmty8ypf') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(16, 2, 'tinytable_css_iddonowwrgne4wcmty8ypf') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(16, 3, 'tinytable_css_iddonowwrgne4wcmty8ypf') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(17, 0, 'tinytable_css_idey0m2a0brnjbzzk9l29y') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(17, 1, 'tinytable_css_iddonowwrgne4wcmty8ypf') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(17, 2, 'tinytable_css_iddonowwrgne4wcmty8ypf') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(17, 3, 'tinytable_css_iddonowwrgne4wcmty8ypf') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(18, 0, 'tinytable_css_idey0m2a0brnjbzzk9l29y') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(18, 1, 'tinytable_css_iddonowwrgne4wcmty8ypf') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(18, 2, 'tinytable_css_iddonowwrgne4wcmty8ypf') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(18, 3, 'tinytable_css_iddonowwrgne4wcmty8ypf') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(19, 0, 'tinytable_css_idey0m2a0brnjbzzk9l29y') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(19, 1, 'tinytable_css_iddonowwrgne4wcmty8ypf') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(19, 2, 'tinytable_css_iddonowwrgne4wcmty8ypf') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(19, 3, 'tinytable_css_iddonowwrgne4wcmty8ypf') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(20, 0, 'tinytable_css_idey0m2a0brnjbzzk9l29y') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(20, 1, 'tinytable_css_iddonowwrgne4wcmty8ypf') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(20, 2, 'tinytable_css_iddonowwrgne4wcmty8ypf') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(20, 3, 'tinytable_css_iddonowwrgne4wcmty8ypf') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(21, 0, 'tinytable_css_idey0m2a0brnjbzzk9l29y') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(21, 1, 'tinytable_css_iddonowwrgne4wcmty8ypf') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(21, 2, 'tinytable_css_iddonowwrgne4wcmty8ypf') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(21, 3, 'tinytable_css_iddonowwrgne4wcmty8ypf') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(22, 0, 'tinytable_css_idey0m2a0brnjbzzk9l29y') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(22, 1, 'tinytable_css_iddonowwrgne4wcmty8ypf') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(22, 2, 'tinytable_css_iddonowwrgne4wcmty8ypf') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(22, 3, 'tinytable_css_iddonowwrgne4wcmty8ypf') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(23, 0, 'tinytable_css_idey0m2a0brnjbzzk9l29y') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(23, 1, 'tinytable_css_iddonowwrgne4wcmty8ypf') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(23, 2, 'tinytable_css_iddonowwrgne4wcmty8ypf') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(23, 3, 'tinytable_css_iddonowwrgne4wcmty8ypf') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(24, 0, 'tinytable_css_idey0m2a0brnjbzzk9l29y') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(24, 1, 'tinytable_css_iddonowwrgne4wcmty8ypf') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(24, 2, 'tinytable_css_iddonowwrgne4wcmty8ypf') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(24, 3, 'tinytable_css_iddonowwrgne4wcmty8ypf') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(25, 0, 'tinytable_css_idey0m2a0brnjbzzk9l29y') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(25, 1, 'tinytable_css_iddonowwrgne4wcmty8ypf') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(25, 2, 'tinytable_css_iddonowwrgne4wcmty8ypf') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(25, 3, 'tinytable_css_iddonowwrgne4wcmty8ypf') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(26, 0, 'tinytable_css_idey0m2a0brnjbzzk9l29y') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(26, 1, 'tinytable_css_iddonowwrgne4wcmty8ypf') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(26, 2, 'tinytable_css_iddonowwrgne4wcmty8ypf') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(26, 3, 'tinytable_css_iddonowwrgne4wcmty8ypf') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(27, 0, 'tinytable_css_idey0m2a0brnjbzzk9l29y') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(27, 1, 'tinytable_css_iddonowwrgne4wcmty8ypf') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(27, 2, 'tinytable_css_iddonowwrgne4wcmty8ypf') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(27, 3, 'tinytable_css_iddonowwrgne4wcmty8ypf') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(28, 0, 'tinytable_css_idey0m2a0brnjbzzk9l29y') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(28, 1, 'tinytable_css_iddonowwrgne4wcmty8ypf') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(28, 2, 'tinytable_css_iddonowwrgne4wcmty8ypf') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(28, 3, 'tinytable_css_iddonowwrgne4wcmty8ypf') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(29, 0, 'tinytable_css_idey0m2a0brnjbzzk9l29y') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(29, 1, 'tinytable_css_iddonowwrgne4wcmty8ypf') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(29, 2, 'tinytable_css_iddonowwrgne4wcmty8ypf') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(29, 3, 'tinytable_css_iddonowwrgne4wcmty8ypf') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(30, 0, 'tinytable_css_idey0m2a0brnjbzzk9l29y') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(30, 1, 'tinytable_css_iddonowwrgne4wcmty8ypf') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(30, 2, 'tinytable_css_iddonowwrgne4wcmty8ypf') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(30, 3, 'tinytable_css_iddonowwrgne4wcmty8ypf') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(31, 0, 'tinytable_css_idey0m2a0brnjbzzk9l29y') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(31, 1, 'tinytable_css_iddonowwrgne4wcmty8ypf') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(31, 2, 'tinytable_css_iddonowwrgne4wcmty8ypf') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(31, 3, 'tinytable_css_iddonowwrgne4wcmty8ypf') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(32, 0, 'tinytable_css_idey0m2a0brnjbzzk9l29y') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(32, 1, 'tinytable_css_iddonowwrgne4wcmty8ypf') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(32, 2, 'tinytable_css_iddonowwrgne4wcmty8ypf') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(32, 3, 'tinytable_css_iddonowwrgne4wcmty8ypf') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(33, 0, 'tinytable_css_idey0m2a0brnjbzzk9l29y') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(33, 1, 'tinytable_css_iddonowwrgne4wcmty8ypf') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(33, 2, 'tinytable_css_iddonowwrgne4wcmty8ypf') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(33, 3, 'tinytable_css_iddonowwrgne4wcmty8ypf') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(34, 0, 'tinytable_css_ida2xcj01mp0ts0w85430l') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(34, 1, 'tinytable_css_id0vext399x0ze7aaivheb') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(34, 2, 'tinytable_css_id0vext399x0ze7aaivheb') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(34, 3, 'tinytable_css_id0vext399x0ze7aaivheb') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(35, 0, 'tinytable_css_idey0m2a0brnjbzzk9l29y') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(35, 1, 'tinytable_css_iddonowwrgne4wcmty8ypf') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(35, 2, 'tinytable_css_iddonowwrgne4wcmty8ypf') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(35, 3, 'tinytable_css_iddonowwrgne4wcmty8ypf') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(36, 0, 'tinytable_css_idey0m2a0brnjbzzk9l29y') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(36, 1, 'tinytable_css_iddonowwrgne4wcmty8ypf') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(36, 2, 'tinytable_css_iddonowwrgne4wcmty8ypf') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(36, 3, 'tinytable_css_iddonowwrgne4wcmty8ypf') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(37, 0, 'tinytable_css_idey0m2a0brnjbzzk9l29y') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(37, 1, 'tinytable_css_idey0m2a0brnjbzzk9l29y') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(37, 2, 'tinytable_css_idey0m2a0brnjbzzk9l29y') })
+window.addEventListener('load', function () { styleCell_q1dj81sr9feqhx9j6gdp(37, 3, 'tinytable_css_idey0m2a0brnjbzzk9l29y') })
+    </script>
+
+    <style>
+.table td.tinytable_css_iduewk0ij0imj0cegjupi7, .table th.tinytable_css_iduewk0ij0imj0cegjupi7 { text-align: left; border-bottom: solid 0.1em #d3d8dc; }
+.table td.tinytable_css_id8ypdzsh7e13bj5rvvxbx, .table th.tinytable_css_id8ypdzsh7e13bj5rvvxbx { text-align: center; border-bottom: solid 0.1em #d3d8dc; }
+.table td.tinytable_css_idey0m2a0brnjbzzk9l29y, .table th.tinytable_css_idey0m2a0brnjbzzk9l29y { text-align: left; }
+.table td.tinytable_css_iddonowwrgne4wcmty8ypf, .table th.tinytable_css_iddonowwrgne4wcmty8ypf { text-align: center; }
+.table td.tinytable_css_ida2xcj01mp0ts0w85430l, .table th.tinytable_css_ida2xcj01mp0ts0w85430l { border-bottom: solid 0.05em black; text-align: left; }
+.table td.tinytable_css_id0vext399x0ze7aaivheb, .table th.tinytable_css_id0vext399x0ze7aaivheb { border-bottom: solid 0.05em black; text-align: center; }
+</style>
+    <div class="container">
+      <table class="table table-borderless" id="tinytable_q1dj81sr9feqhx9j6gdp" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing="true">
+        <thead>
+        <caption>Cognitive risk perception: sensitivity analysis across alternative model specifications.</caption>
+              <tr>
+                <th scope="col"> </th>
+                <th scope="col">Full</th>
+                <th scope="col">No interaction</th>
+                <th scope="col">No IT</th>
+              </tr>
+        </thead>
+        <tfoot><tr><td colspan="4">+ p &lt; 0.1, * p &lt; 0.05, ** p &lt; 0.01, *** p &lt; 0.001</td></tr></tfoot>
+        <tbody>
+                <tr>
+                  <td>ara2           </td>
+                  <td>\num{0.00} [\num{-0.13}, \num{0.12}]     </td>
+                  <td>\num{-0.01} [\num{-0.13}, \num{0.12}]    </td>
+                  <td>\num{-0.01} [\num{-0.15}, \num{0.13}]    </td>
+                </tr>
+                <tr>
+                  <td>ara3           </td>
+                  <td>\num{-0.06} [\num{-0.35}, \num{0.22}]    </td>
+                  <td>\num{-0.02} [\num{-0.31}, \num{0.26}]    </td>
+                  <td>\num{-0.02} [\num{-0.34}, \num{0.29}]    </td>
+                </tr>
+                <tr>
+                  <td>ara4           </td>
+                  <td>\num{0.00} [\num{-0.16}, \num{0.17}]     </td>
+                  <td>\num{0.00} [\num{-0.18}, \num{0.17}]     </td>
+                  <td>\num{0.00} [\num{-0.19}, \num{0.19}]     </td>
+                </tr>
+                <tr>
+                  <td>ara5           </td>
+                  <td>\num{0.10} [\num{-0.08}, \num{0.27}]     </td>
+                  <td>\num{0.08} [\num{-0.10}, \num{0.26}]     </td>
+                  <td>\num{0.15} [\num{-0.05}, \num{0.34}]     </td>
+                </tr>
+                <tr>
+                  <td>ara6           </td>
+                  <td>\num{-0.18}* [\num{-0.36}, \num{-0.01}]  </td>
+                  <td>\num{-0.20}* [\num{-0.38}, \num{-0.02}]  </td>
+                  <td>\num{-0.23}* [\num{-0.42}, \num{-0.03}]  </td>
+                </tr>
+                <tr>
+                  <td>ara7           </td>
+                  <td>\num{-0.02} [\num{-0.17}, \num{0.13}]    </td>
+                  <td>\num{-0.03} [\num{-0.18}, \num{0.12}]    </td>
+                  <td>\num{0.00} [\num{-0.17}, \num{0.17}]     </td>
+                </tr>
+                <tr>
+                  <td>ara8           </td>
+                  <td>\num{0.00} [\num{-0.40}, \num{0.40}]     </td>
+                  <td>\num{-0.01} [\num{-0.41}, \num{0.39}]    </td>
+                  <td>\num{-0.01} [\num{-0.45}, \num{0.43}]    </td>
+                </tr>
+                <tr>
+                  <td>age2           </td>
+                  <td>\num{0.12} [\num{-0.06}, \num{0.30}]     </td>
+                  <td>\num{0.12} [\num{-0.06}, \num{0.30}]     </td>
+                  <td>\num{0.12} [\num{-0.08}, \num{0.32}]     </td>
+                </tr>
+                <tr>
+                  <td>age3           </td>
+                  <td>\num{0.10} [\num{-0.08}, \num{0.28}]     </td>
+                  <td>\num{0.10} [\num{-0.08}, \num{0.28}]     </td>
+                  <td>\num{0.13} [\num{-0.06}, \num{0.33}]     </td>
+                </tr>
+                <tr>
+                  <td>age4           </td>
+                  <td>\num{0.00} [\num{-0.17}, \num{0.18}]     </td>
+                  <td>\num{0.00} [\num{-0.18}, \num{0.17}]     </td>
+                  <td>\num{0.03} [\num{-0.17}, \num{0.22}]     </td>
+                </tr>
+                <tr>
+                  <td>age5           </td>
+                  <td>\num{-0.05} [\num{-0.24}, \num{0.13}]    </td>
+                  <td>\num{-0.05} [\num{-0.24}, \num{0.14}]    </td>
+                  <td>\num{-0.07} [\num{-0.28}, \num{0.14}]    </td>
+                </tr>
+                <tr>
+                  <td>age6           </td>
+                  <td>\num{0.02} [\num{-0.20}, \num{0.24}]     </td>
+                  <td>\num{0.03} [\num{-0.19}, \num{0.25}]     </td>
+                  <td>\num{0.02} [\num{-0.23}, \num{0.26}]     </td>
+                </tr>
+                <tr>
+                  <td>sex2           </td>
+                  <td>\num{0.23}*** [\num{0.13}, \num{0.33}]   </td>
+                  <td>\num{0.23}*** [\num{0.13}, \num{0.34}]   </td>
+                  <td>\num{0.28}*** [\num{0.17}, \num{0.40}]   </td>
+                </tr>
+                <tr>
+                  <td>presid2        </td>
+                  <td>\num{1.18}*** [\num{1.01}, \num{1.35}]   </td>
+                  <td>\num{0.90}*** [\num{0.78}, \num{1.03}]   </td>
+                  <td>\num{1.30}*** [\num{1.18}, \num{1.43}]   </td>
+                </tr>
+                <tr>
+                  <td>presid3        </td>
+                  <td>\num{0.72}*** [\num{0.40}, \num{1.05}]   </td>
+                  <td>\num{0.68}*** [\num{0.48}, \num{0.88}]   </td>
+                  <td>\num{0.98}*** [\num{0.77}, \num{1.19}]   </td>
+                </tr>
+                <tr>
+                  <td>exag2          </td>
+                  <td>\num{1.02}*** [\num{0.82}, \num{1.22}]   </td>
+                  <td>\num{0.80}*** [\num{0.68}, \num{0.91}]   </td>
+                  <td>                                            </td>
+                </tr>
+                <tr>
+                  <td>exag3          </td>
+                  <td>\num{1.10}*** [\num{0.81}, \num{1.39}]   </td>
+                  <td>\num{0.56}*** [\num{0.38}, \num{0.75}]   </td>
+                  <td>                                            </td>
+                </tr>
+                <tr>
+                  <td>ideo2          </td>
+                  <td>\num{0.05} [\num{-0.07}, \num{0.16}]     </td>
+                  <td>\num{0.04} [\num{-0.08}, \num{0.16}]     </td>
+                  <td>\num{0.08} [\num{-0.05}, \num{0.21}]     </td>
+                </tr>
+                <tr>
+                  <td>ideo3          </td>
+                  <td>\num{0.11} [\num{-0.03}, \num{0.24}]     </td>
+                  <td>\num{0.11} [\num{-0.03}, \num{0.24}]     </td>
+                  <td>\num{0.15}* [\num{0.00}, \num{0.30}]     </td>
+                </tr>
+                <tr>
+                  <td>ideo4          </td>
+                  <td>\num{0.03} [\num{-0.13}, \num{0.19}]     </td>
+                  <td>\num{0.06} [\num{-0.10}, \num{0.23}]     </td>
+                  <td>\num{0.12} [\num{-0.06}, \num{0.30}]     </td>
+                </tr>
+                <tr>
+                  <td>job2           </td>
+                  <td>\num{-0.15} [\num{-0.46}, \num{0.17}]    </td>
+                  <td>\num{-0.21} [\num{-0.53}, \num{0.11}]    </td>
+                  <td>\num{-0.19} [\num{-0.55}, \num{0.16}]    </td>
+                </tr>
+                <tr>
+                  <td>job3           </td>
+                  <td>\num{-0.26} [\num{-0.58}, \num{0.05}]    </td>
+                  <td>\num{-0.29}+ [\num{-0.61}, \num{0.03}]   </td>
+                  <td>\num{-0.27} [\num{-0.63}, \num{0.08}]    </td>
+                </tr>
+                <tr>
+                  <td>job4           </td>
+                  <td>\num{-0.27}+ [\num{-0.59}, \num{0.04}]   </td>
+                  <td>\num{-0.30}+ [\num{-0.62}, \num{0.02}]   </td>
+                  <td>\num{-0.27} [\num{-0.62}, \num{0.09}]    </td>
+                </tr>
+                <tr>
+                  <td>job5           </td>
+                  <td>\num{-0.22} [\num{-0.54}, \num{0.10}]    </td>
+                  <td>\num{-0.23} [\num{-0.56}, \num{0.09}]    </td>
+                  <td>\num{-0.19} [\num{-0.55}, \num{0.17}]    </td>
+                </tr>
+                <tr>
+                  <td>job6           </td>
+                  <td>\num{-0.35}+ [\num{-0.72}, \num{0.02}]   </td>
+                  <td>\num{-0.38}+ [\num{-0.76}, \num{0.00}]   </td>
+                  <td>\num{-0.37}+ [\num{-0.79}, \num{0.04}]   </td>
+                </tr>
+                <tr>
+                  <td>job7           </td>
+                  <td>\num{-0.31}+ [\num{-0.63}, \num{0.02}]   </td>
+                  <td>\num{-0.34}* [\num{-0.67}, \num{-0.01}]  </td>
+                  <td>\num{-0.27} [\num{-0.63}, \num{0.09}]    </td>
+                </tr>
+                <tr>
+                  <td>class2         </td>
+                  <td>\num{-0.21}* [\num{-0.39}, \num{-0.03}]  </td>
+                  <td>\num{-0.20}* [\num{-0.38}, \num{-0.02}]  </td>
+                  <td>\num{-0.16} [\num{-0.36}, \num{0.03}]    </td>
+                </tr>
+                <tr>
+                  <td>class3         </td>
+                  <td>\num{-0.20}* [\num{-0.36}, \num{-0.04}]  </td>
+                  <td>\num{-0.20}* [\num{-0.36}, \num{-0.04}]  </td>
+                  <td>\num{-0.23}* [\num{-0.41}, \num{-0.06}]  </td>
+                </tr>
+                <tr>
+                  <td>class4         </td>
+                  <td>\num{-0.37}*** [\num{-0.56}, \num{-0.18}]</td>
+                  <td>\num{-0.37}*** [\num{-0.56}, \num{-0.18}]</td>
+                  <td>\num{-0.41}*** [\num{-0.62}, \num{-0.20}]</td>
+                </tr>
+                <tr>
+                  <td>edu2           </td>
+                  <td>\num{-0.03} [\num{-0.14}, \num{0.09}]    </td>
+                  <td>\num{-0.02} [\num{-0.13}, \num{0.10}]    </td>
+                  <td>\num{0.00} [\num{-0.12}, \num{0.13}]     </td>
+                </tr>
+                <tr>
+                  <td>presid2 × exag2</td>
+                  <td>\num{-0.43}*** [\num{-0.68}, \num{-0.18}]</td>
+                  <td>                                            </td>
+                  <td>                                            </td>
+                </tr>
+                <tr>
+                  <td>presid3 × exag2</td>
+                  <td>\num{-0.13} [\num{-0.56}, \num{0.29}]    </td>
+                  <td>                                            </td>
+                  <td>                                            </td>
+                </tr>
+                <tr>
+                  <td>presid2 × exag3</td>
+                  <td>\num{-0.99}*** [\num{-1.37}, \num{-0.60}]</td>
+                  <td>                                            </td>
+                  <td>                                            </td>
+                </tr>
+                <tr>
+                  <td>presid3 × exag3</td>
+                  <td>\num{-0.50} [\num{-1.10}, \num{0.10}]    </td>
+                  <td>                                            </td>
+                  <td>                                            </td>
+                </tr>
+                <tr>
+                  <td>R2             </td>
+                  <td>\num{0.581}                                </td>
+                  <td>\num{0.567}                                </td>
+                  <td>\num{0.473}                                </td>
+                </tr>
+                <tr>
+                  <td>R2 Adj.        </td>
+                  <td>\num{0.565}                                </td>
+                  <td>\num{0.553}                                </td>
+                  <td>\num{0.456}                                </td>
+                </tr>
+        </tbody>
+      </table>
+    </div>
+<!-- hack to avoid NA insertion in last line -->
+<pre class="r"><code>sink(file = NULL)
+
+
+models_aff = list(
+  &quot;Full&quot; = fit_aff_full,
+  &quot;No interaction&quot; = fit_aff_main,
+  &quot;No IT&quot; = fit_aff_noIT
+)
+
+sink(file = &quot;./latex table/rp-sensitivity-aff.txt&quot;)
+
+modelsummary(
+  models_aff,
+  fmt = 2,
+  stars = TRUE,
+  statistic = NULL,
+  estimate = &quot;{estimate}{stars} [{conf.low}, {conf.high}]&quot;,
+  coef_omit = &quot;Intercept&quot;,
+  gof_omit = &quot;Num.Obs.|DF|Deviance|F|Log.Lik.|RMSE|AIC|BIC&quot;,
+  title = &quot;Affective risk perception: sensitivity analysis across alternative model specifications.&quot;,
+  output = &quot;latex&quot;,
+  notes = list(&quot;+ p &lt; 0.1, * p &lt; 0.05, ** p &lt; 0.01, *** p &lt; 0.001&quot;)
+)</code></pre>
+<!-- preamble start -->
+
+    <script>
+      function styleCell_tzk8l1st5q064si0ekbw(i, j, css_id) {
+        var table = document.getElementById("tinytable_tzk8l1st5q064si0ekbw");
+        table.rows[i].cells[j].classList.add(css_id);
+      }
+      function insertSpanRow(i, colspan, content) {
+        var table = document.getElementById('tinytable_tzk8l1st5q064si0ekbw');
+        var newRow = table.insertRow(i);
+        var newCell = newRow.insertCell(0);
+        newCell.setAttribute("colspan", colspan);
+        // newCell.innerText = content;
+        // this may be unsafe, but innerText does not interpret <br>
+        newCell.innerHTML = content;
+      }
+      function spanCell_tzk8l1st5q064si0ekbw(i, j, rowspan, colspan) {
+        var table = document.getElementById("tinytable_tzk8l1st5q064si0ekbw");
+        const targetRow = table.rows[i];
+        const targetCell = targetRow.cells[j];
+        for (let r = 0; r < rowspan; r++) {
+          // Only start deleting cells to the right for the first row (r == 0)
+          if (r === 0) {
+            // Delete cells to the right of the target cell in the first row
+            for (let c = colspan - 1; c > 0; c--) {
+              if (table.rows[i + r].cells[j + c]) {
+                table.rows[i + r].deleteCell(j + c);
+              }
+            }
+          }
+          // For rows below the first, delete starting from the target column
+          if (r > 0) {
+            for (let c = colspan - 1; c >= 0; c--) {
+              if (table.rows[i + r] && table.rows[i + r].cells[j]) {
+                table.rows[i + r].deleteCell(j);
+              }
+            }
+          }
+        }
+        // Set rowspan and colspan of the target cell
+        targetCell.rowSpan = rowspan;
+        targetCell.colSpan = colspan;
+      }
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(0, 0, 'tinytable_css_idwcakdnyr3yrcg7ewaz2u') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(0, 1, 'tinytable_css_id8toci4fi93wbkfo0nj48') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(0, 2, 'tinytable_css_id8toci4fi93wbkfo0nj48') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(0, 3, 'tinytable_css_id8toci4fi93wbkfo0nj48') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(1, 0, 'tinytable_css_idzxu8nkhv6mrcgeydoaec') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(1, 1, 'tinytable_css_ida1i57rxlimj308opg6m0') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(1, 2, 'tinytable_css_ida1i57rxlimj308opg6m0') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(1, 3, 'tinytable_css_ida1i57rxlimj308opg6m0') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(2, 0, 'tinytable_css_idzxu8nkhv6mrcgeydoaec') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(2, 1, 'tinytable_css_ida1i57rxlimj308opg6m0') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(2, 2, 'tinytable_css_ida1i57rxlimj308opg6m0') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(2, 3, 'tinytable_css_ida1i57rxlimj308opg6m0') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(3, 0, 'tinytable_css_idzxu8nkhv6mrcgeydoaec') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(3, 1, 'tinytable_css_ida1i57rxlimj308opg6m0') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(3, 2, 'tinytable_css_ida1i57rxlimj308opg6m0') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(3, 3, 'tinytable_css_ida1i57rxlimj308opg6m0') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(4, 0, 'tinytable_css_idzxu8nkhv6mrcgeydoaec') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(4, 1, 'tinytable_css_ida1i57rxlimj308opg6m0') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(4, 2, 'tinytable_css_ida1i57rxlimj308opg6m0') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(4, 3, 'tinytable_css_ida1i57rxlimj308opg6m0') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(5, 0, 'tinytable_css_idzxu8nkhv6mrcgeydoaec') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(5, 1, 'tinytable_css_ida1i57rxlimj308opg6m0') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(5, 2, 'tinytable_css_ida1i57rxlimj308opg6m0') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(5, 3, 'tinytable_css_ida1i57rxlimj308opg6m0') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(6, 0, 'tinytable_css_idzxu8nkhv6mrcgeydoaec') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(6, 1, 'tinytable_css_ida1i57rxlimj308opg6m0') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(6, 2, 'tinytable_css_ida1i57rxlimj308opg6m0') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(6, 3, 'tinytable_css_ida1i57rxlimj308opg6m0') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(7, 0, 'tinytable_css_idzxu8nkhv6mrcgeydoaec') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(7, 1, 'tinytable_css_ida1i57rxlimj308opg6m0') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(7, 2, 'tinytable_css_ida1i57rxlimj308opg6m0') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(7, 3, 'tinytable_css_ida1i57rxlimj308opg6m0') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(8, 0, 'tinytable_css_idzxu8nkhv6mrcgeydoaec') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(8, 1, 'tinytable_css_ida1i57rxlimj308opg6m0') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(8, 2, 'tinytable_css_ida1i57rxlimj308opg6m0') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(8, 3, 'tinytable_css_ida1i57rxlimj308opg6m0') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(9, 0, 'tinytable_css_idzxu8nkhv6mrcgeydoaec') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(9, 1, 'tinytable_css_ida1i57rxlimj308opg6m0') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(9, 2, 'tinytable_css_ida1i57rxlimj308opg6m0') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(9, 3, 'tinytable_css_ida1i57rxlimj308opg6m0') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(10, 0, 'tinytable_css_idzxu8nkhv6mrcgeydoaec') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(10, 1, 'tinytable_css_ida1i57rxlimj308opg6m0') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(10, 2, 'tinytable_css_ida1i57rxlimj308opg6m0') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(10, 3, 'tinytable_css_ida1i57rxlimj308opg6m0') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(11, 0, 'tinytable_css_idzxu8nkhv6mrcgeydoaec') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(11, 1, 'tinytable_css_ida1i57rxlimj308opg6m0') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(11, 2, 'tinytable_css_ida1i57rxlimj308opg6m0') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(11, 3, 'tinytable_css_ida1i57rxlimj308opg6m0') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(12, 0, 'tinytable_css_idzxu8nkhv6mrcgeydoaec') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(12, 1, 'tinytable_css_ida1i57rxlimj308opg6m0') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(12, 2, 'tinytable_css_ida1i57rxlimj308opg6m0') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(12, 3, 'tinytable_css_ida1i57rxlimj308opg6m0') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(13, 0, 'tinytable_css_idzxu8nkhv6mrcgeydoaec') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(13, 1, 'tinytable_css_ida1i57rxlimj308opg6m0') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(13, 2, 'tinytable_css_ida1i57rxlimj308opg6m0') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(13, 3, 'tinytable_css_ida1i57rxlimj308opg6m0') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(14, 0, 'tinytable_css_idzxu8nkhv6mrcgeydoaec') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(14, 1, 'tinytable_css_ida1i57rxlimj308opg6m0') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(14, 2, 'tinytable_css_ida1i57rxlimj308opg6m0') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(14, 3, 'tinytable_css_ida1i57rxlimj308opg6m0') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(15, 0, 'tinytable_css_idzxu8nkhv6mrcgeydoaec') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(15, 1, 'tinytable_css_ida1i57rxlimj308opg6m0') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(15, 2, 'tinytable_css_ida1i57rxlimj308opg6m0') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(15, 3, 'tinytable_css_ida1i57rxlimj308opg6m0') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(16, 0, 'tinytable_css_idzxu8nkhv6mrcgeydoaec') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(16, 1, 'tinytable_css_ida1i57rxlimj308opg6m0') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(16, 2, 'tinytable_css_ida1i57rxlimj308opg6m0') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(16, 3, 'tinytable_css_ida1i57rxlimj308opg6m0') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(17, 0, 'tinytable_css_idzxu8nkhv6mrcgeydoaec') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(17, 1, 'tinytable_css_ida1i57rxlimj308opg6m0') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(17, 2, 'tinytable_css_ida1i57rxlimj308opg6m0') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(17, 3, 'tinytable_css_ida1i57rxlimj308opg6m0') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(18, 0, 'tinytable_css_idzxu8nkhv6mrcgeydoaec') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(18, 1, 'tinytable_css_ida1i57rxlimj308opg6m0') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(18, 2, 'tinytable_css_ida1i57rxlimj308opg6m0') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(18, 3, 'tinytable_css_ida1i57rxlimj308opg6m0') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(19, 0, 'tinytable_css_idzxu8nkhv6mrcgeydoaec') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(19, 1, 'tinytable_css_ida1i57rxlimj308opg6m0') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(19, 2, 'tinytable_css_ida1i57rxlimj308opg6m0') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(19, 3, 'tinytable_css_ida1i57rxlimj308opg6m0') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(20, 0, 'tinytable_css_idzxu8nkhv6mrcgeydoaec') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(20, 1, 'tinytable_css_ida1i57rxlimj308opg6m0') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(20, 2, 'tinytable_css_ida1i57rxlimj308opg6m0') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(20, 3, 'tinytable_css_ida1i57rxlimj308opg6m0') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(21, 0, 'tinytable_css_idzxu8nkhv6mrcgeydoaec') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(21, 1, 'tinytable_css_ida1i57rxlimj308opg6m0') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(21, 2, 'tinytable_css_ida1i57rxlimj308opg6m0') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(21, 3, 'tinytable_css_ida1i57rxlimj308opg6m0') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(22, 0, 'tinytable_css_idzxu8nkhv6mrcgeydoaec') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(22, 1, 'tinytable_css_ida1i57rxlimj308opg6m0') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(22, 2, 'tinytable_css_ida1i57rxlimj308opg6m0') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(22, 3, 'tinytable_css_ida1i57rxlimj308opg6m0') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(23, 0, 'tinytable_css_idzxu8nkhv6mrcgeydoaec') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(23, 1, 'tinytable_css_ida1i57rxlimj308opg6m0') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(23, 2, 'tinytable_css_ida1i57rxlimj308opg6m0') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(23, 3, 'tinytable_css_ida1i57rxlimj308opg6m0') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(24, 0, 'tinytable_css_idzxu8nkhv6mrcgeydoaec') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(24, 1, 'tinytable_css_ida1i57rxlimj308opg6m0') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(24, 2, 'tinytable_css_ida1i57rxlimj308opg6m0') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(24, 3, 'tinytable_css_ida1i57rxlimj308opg6m0') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(25, 0, 'tinytable_css_idzxu8nkhv6mrcgeydoaec') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(25, 1, 'tinytable_css_ida1i57rxlimj308opg6m0') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(25, 2, 'tinytable_css_ida1i57rxlimj308opg6m0') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(25, 3, 'tinytable_css_ida1i57rxlimj308opg6m0') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(26, 0, 'tinytable_css_idzxu8nkhv6mrcgeydoaec') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(26, 1, 'tinytable_css_ida1i57rxlimj308opg6m0') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(26, 2, 'tinytable_css_ida1i57rxlimj308opg6m0') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(26, 3, 'tinytable_css_ida1i57rxlimj308opg6m0') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(27, 0, 'tinytable_css_idzxu8nkhv6mrcgeydoaec') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(27, 1, 'tinytable_css_ida1i57rxlimj308opg6m0') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(27, 2, 'tinytable_css_ida1i57rxlimj308opg6m0') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(27, 3, 'tinytable_css_ida1i57rxlimj308opg6m0') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(28, 0, 'tinytable_css_idzxu8nkhv6mrcgeydoaec') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(28, 1, 'tinytable_css_ida1i57rxlimj308opg6m0') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(28, 2, 'tinytable_css_ida1i57rxlimj308opg6m0') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(28, 3, 'tinytable_css_ida1i57rxlimj308opg6m0') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(29, 0, 'tinytable_css_idzxu8nkhv6mrcgeydoaec') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(29, 1, 'tinytable_css_ida1i57rxlimj308opg6m0') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(29, 2, 'tinytable_css_ida1i57rxlimj308opg6m0') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(29, 3, 'tinytable_css_ida1i57rxlimj308opg6m0') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(30, 0, 'tinytable_css_idzxu8nkhv6mrcgeydoaec') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(30, 1, 'tinytable_css_ida1i57rxlimj308opg6m0') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(30, 2, 'tinytable_css_ida1i57rxlimj308opg6m0') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(30, 3, 'tinytable_css_ida1i57rxlimj308opg6m0') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(31, 0, 'tinytable_css_idzxu8nkhv6mrcgeydoaec') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(31, 1, 'tinytable_css_ida1i57rxlimj308opg6m0') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(31, 2, 'tinytable_css_ida1i57rxlimj308opg6m0') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(31, 3, 'tinytable_css_ida1i57rxlimj308opg6m0') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(32, 0, 'tinytable_css_idzxu8nkhv6mrcgeydoaec') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(32, 1, 'tinytable_css_ida1i57rxlimj308opg6m0') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(32, 2, 'tinytable_css_ida1i57rxlimj308opg6m0') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(32, 3, 'tinytable_css_ida1i57rxlimj308opg6m0') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(33, 0, 'tinytable_css_idzxu8nkhv6mrcgeydoaec') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(33, 1, 'tinytable_css_ida1i57rxlimj308opg6m0') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(33, 2, 'tinytable_css_ida1i57rxlimj308opg6m0') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(33, 3, 'tinytable_css_ida1i57rxlimj308opg6m0') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(34, 0, 'tinytable_css_idrhm4xkhoxezoiv8v9egy') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(34, 1, 'tinytable_css_idsjc0ownpfrttdhuv1lhx') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(34, 2, 'tinytable_css_idsjc0ownpfrttdhuv1lhx') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(34, 3, 'tinytable_css_idsjc0ownpfrttdhuv1lhx') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(35, 0, 'tinytable_css_idzxu8nkhv6mrcgeydoaec') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(35, 1, 'tinytable_css_ida1i57rxlimj308opg6m0') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(35, 2, 'tinytable_css_ida1i57rxlimj308opg6m0') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(35, 3, 'tinytable_css_ida1i57rxlimj308opg6m0') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(36, 0, 'tinytable_css_idzxu8nkhv6mrcgeydoaec') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(36, 1, 'tinytable_css_ida1i57rxlimj308opg6m0') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(36, 2, 'tinytable_css_ida1i57rxlimj308opg6m0') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(36, 3, 'tinytable_css_ida1i57rxlimj308opg6m0') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(37, 0, 'tinytable_css_idzxu8nkhv6mrcgeydoaec') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(37, 1, 'tinytable_css_idzxu8nkhv6mrcgeydoaec') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(37, 2, 'tinytable_css_idzxu8nkhv6mrcgeydoaec') })
+window.addEventListener('load', function () { styleCell_tzk8l1st5q064si0ekbw(37, 3, 'tinytable_css_idzxu8nkhv6mrcgeydoaec') })
+    </script>
+
+    <style>
+.table td.tinytable_css_idwcakdnyr3yrcg7ewaz2u, .table th.tinytable_css_idwcakdnyr3yrcg7ewaz2u { text-align: left; border-bottom: solid 0.1em #d3d8dc; }
+.table td.tinytable_css_id8toci4fi93wbkfo0nj48, .table th.tinytable_css_id8toci4fi93wbkfo0nj48 { text-align: center; border-bottom: solid 0.1em #d3d8dc; }
+.table td.tinytable_css_idzxu8nkhv6mrcgeydoaec, .table th.tinytable_css_idzxu8nkhv6mrcgeydoaec { text-align: left; }
+.table td.tinytable_css_ida1i57rxlimj308opg6m0, .table th.tinytable_css_ida1i57rxlimj308opg6m0 { text-align: center; }
+.table td.tinytable_css_idrhm4xkhoxezoiv8v9egy, .table th.tinytable_css_idrhm4xkhoxezoiv8v9egy { border-bottom: solid 0.05em black; text-align: left; }
+.table td.tinytable_css_idsjc0ownpfrttdhuv1lhx, .table th.tinytable_css_idsjc0ownpfrttdhuv1lhx { border-bottom: solid 0.05em black; text-align: center; }
+</style>
+    <div class="container">
+      <table class="table table-borderless" id="tinytable_tzk8l1st5q064si0ekbw" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing="true">
+        <thead>
+        <caption>Affective risk perception: sensitivity analysis across alternative model specifications.</caption>
+              <tr>
+                <th scope="col"> </th>
+                <th scope="col">Full</th>
+                <th scope="col">No interaction</th>
+                <th scope="col">No IT</th>
+              </tr>
+        </thead>
+        <tfoot><tr><td colspan="4">+ p &lt; 0.1, * p &lt; 0.05, ** p &lt; 0.01, *** p &lt; 0.001</td></tr></tfoot>
+        <tbody>
+                <tr>
+                  <td>ara2           </td>
+                  <td>\num{-0.03} [\num{-0.16}, \num{0.10}]    </td>
+                  <td>\num{-0.03} [\num{-0.17}, \num{0.10}]   </td>
+                  <td>\num{-0.03} [\num{-0.18}, \num{0.12}]   </td>
+                </tr>
+                <tr>
+                  <td>ara3           </td>
+                  <td>\num{-0.21} [\num{-0.51}, \num{0.08}]    </td>
+                  <td>\num{-0.18} [\num{-0.48}, \num{0.12}]   </td>
+                  <td>\num{-0.17} [\num{-0.51}, \num{0.16}]   </td>
+                </tr>
+                <tr>
+                  <td>ara4           </td>
+                  <td>\num{0.05} [\num{-0.13}, \num{0.23}]     </td>
+                  <td>\num{0.05} [\num{-0.14}, \num{0.23}]    </td>
+                  <td>\num{0.05} [\num{-0.15}, \num{0.25}]    </td>
+                </tr>
+                <tr>
+                  <td>ara5           </td>
+                  <td>\num{0.05} [\num{-0.14}, \num{0.23}]     </td>
+                  <td>\num{0.03} [\num{-0.16}, \num{0.21}]    </td>
+                  <td>\num{0.10} [\num{-0.11}, \num{0.31}]    </td>
+                </tr>
+                <tr>
+                  <td>ara6           </td>
+                  <td>\num{-0.08} [\num{-0.26}, \num{0.11}]    </td>
+                  <td>\num{-0.10} [\num{-0.29}, \num{0.09}]   </td>
+                  <td>\num{-0.12} [\num{-0.33}, \num{0.09}]   </td>
+                </tr>
+                <tr>
+                  <td>ara7           </td>
+                  <td>\num{-0.05} [\num{-0.20}, \num{0.11}]    </td>
+                  <td>\num{-0.06} [\num{-0.22}, \num{0.11}]   </td>
+                  <td>\num{-0.02} [\num{-0.20}, \num{0.16}]   </td>
+                </tr>
+                <tr>
+                  <td>ara8           </td>
+                  <td>\num{-0.37}+ [\num{-0.79}, \num{0.05}]   </td>
+                  <td>\num{-0.38}+ [\num{-0.81}, \num{0.04}]  </td>
+                  <td>\num{-0.37} [\num{-0.84}, \num{0.10}]   </td>
+                </tr>
+                <tr>
+                  <td>age2           </td>
+                  <td>\num{0.09} [\num{-0.10}, \num{0.28}]     </td>
+                  <td>\num{0.09} [\num{-0.10}, \num{0.28}]    </td>
+                  <td>\num{0.08} [\num{-0.13}, \num{0.29}]    </td>
+                </tr>
+                <tr>
+                  <td>age3           </td>
+                  <td>\num{0.04} [\num{-0.15}, \num{0.22}]     </td>
+                  <td>\num{0.03} [\num{-0.16}, \num{0.22}]    </td>
+                  <td>\num{0.06} [\num{-0.15}, \num{0.27}]    </td>
+                </tr>
+                <tr>
+                  <td>age4           </td>
+                  <td>\num{-0.03} [\num{-0.22}, \num{0.15}]    </td>
+                  <td>\num{-0.04} [\num{-0.23}, \num{0.14}]   </td>
+                  <td>\num{-0.02} [\num{-0.23}, \num{0.19}]   </td>
+                </tr>
+                <tr>
+                  <td>age5           </td>
+                  <td>\num{-0.03} [\num{-0.23}, \num{0.16}]    </td>
+                  <td>\num{-0.03} [\num{-0.22}, \num{0.17}]   </td>
+                  <td>\num{-0.05} [\num{-0.27}, \num{0.17}]   </td>
+                </tr>
+                <tr>
+                  <td>age6           </td>
+                  <td>\num{0.02} [\num{-0.21}, \num{0.25}]     </td>
+                  <td>\num{0.05} [\num{-0.19}, \num{0.28}]    </td>
+                  <td>\num{0.04} [\num{-0.22}, \num{0.30}]    </td>
+                </tr>
+                <tr>
+                  <td>sex2           </td>
+                  <td>\num{0.17}** [\num{0.07}, \num{0.28}]    </td>
+                  <td>\num{0.18}** [\num{0.07}, \num{0.29}]   </td>
+                  <td>\num{0.23}*** [\num{0.11}, \num{0.35}]  </td>
+                </tr>
+                <tr>
+                  <td>presid2        </td>
+                  <td>\num{1.40}*** [\num{1.22}, \num{1.58}]   </td>
+                  <td>\num{1.08}*** [\num{0.94}, \num{1.22}]  </td>
+                  <td>\num{1.51}*** [\num{1.37}, \num{1.64}]  </td>
+                </tr>
+                <tr>
+                  <td>presid3        </td>
+                  <td>\num{0.84}*** [\num{0.50}, \num{1.18}]   </td>
+                  <td>\num{0.85}*** [\num{0.64}, \num{1.06}]  </td>
+                  <td>\num{1.18}*** [\num{0.95}, \num{1.41}]  </td>
+                </tr>
+                <tr>
+                  <td>exag2          </td>
+                  <td>\num{1.10}*** [\num{0.89}, \num{1.31}]   </td>
+                  <td>\num{0.85}*** [\num{0.74}, \num{0.97}]  </td>
+                  <td>                                           </td>
+                </tr>
+                <tr>
+                  <td>exag3          </td>
+                  <td>\num{1.40}*** [\num{1.09}, \num{1.71}]   </td>
+                  <td>\num{0.77}*** [\num{0.57}, \num{0.96}]  </td>
+                  <td>                                           </td>
+                </tr>
+                <tr>
+                  <td>ideo2          </td>
+                  <td>\num{0.03} [\num{-0.10}, \num{0.15}]     </td>
+                  <td>\num{0.02} [\num{-0.10}, \num{0.15}]    </td>
+                  <td>\num{0.06} [\num{-0.07}, \num{0.20}]    </td>
+                </tr>
+                <tr>
+                  <td>ideo3          </td>
+                  <td>\num{0.06} [\num{-0.08}, \num{0.20}]     </td>
+                  <td>\num{0.06} [\num{-0.09}, \num{0.20}]    </td>
+                  <td>\num{0.11} [\num{-0.05}, \num{0.27}]    </td>
+                </tr>
+                <tr>
+                  <td>ideo4          </td>
+                  <td>\num{-0.06} [\num{-0.23}, \num{0.11}]    </td>
+                  <td>\num{-0.04} [\num{-0.21}, \num{0.14}]   </td>
+                  <td>\num{0.05} [\num{-0.14}, \num{0.24}]    </td>
+                </tr>
+                <tr>
+                  <td>job2           </td>
+                  <td>\num{-0.24} [\num{-0.58}, \num{0.09}]    </td>
+                  <td>\num{-0.32}+ [\num{-0.66}, \num{0.02}]  </td>
+                  <td>\num{-0.30} [\num{-0.67}, \num{0.08}]   </td>
+                </tr>
+                <tr>
+                  <td>job3           </td>
+                  <td>\num{-0.36}* [\num{-0.69}, \num{-0.02}]  </td>
+                  <td>\num{-0.38}* [\num{-0.73}, \num{-0.04}] </td>
+                  <td>\num{-0.36}+ [\num{-0.74}, \num{0.02}]  </td>
+                </tr>
+                <tr>
+                  <td>job4           </td>
+                  <td>\num{-0.32}+ [\num{-0.65}, \num{0.02}]   </td>
+                  <td>\num{-0.36}* [\num{-0.70}, \num{-0.02}] </td>
+                  <td>\num{-0.32}+ [\num{-0.69}, \num{0.06}]  </td>
+                </tr>
+                <tr>
+                  <td>job5           </td>
+                  <td>\num{-0.24} [\num{-0.58}, \num{0.09}]    </td>
+                  <td>\num{-0.27} [\num{-0.62}, \num{0.07}]   </td>
+                  <td>\num{-0.22} [\num{-0.60}, \num{0.16}]   </td>
+                </tr>
+                <tr>
+                  <td>job6           </td>
+                  <td>\num{-0.47}* [\num{-0.86}, \num{-0.07}]  </td>
+                  <td>\num{-0.50}* [\num{-0.90}, \num{-0.10}] </td>
+                  <td>\num{-0.50}* [\num{-0.95}, \num{-0.06}] </td>
+                </tr>
+                <tr>
+                  <td>job7           </td>
+                  <td>\num{-0.34}* [\num{-0.69}, \num{0.00}]   </td>
+                  <td>\num{-0.40}* [\num{-0.74}, \num{-0.05}] </td>
+                  <td>\num{-0.32} [\num{-0.71}, \num{0.07}]   </td>
+                </tr>
+                <tr>
+                  <td>class2         </td>
+                  <td>\num{-0.13} [\num{-0.32}, \num{0.06}]    </td>
+                  <td>\num{-0.12} [\num{-0.32}, \num{0.07}]   </td>
+                  <td>\num{-0.09} [\num{-0.30}, \num{0.12}]   </td>
+                </tr>
+                <tr>
+                  <td>class3         </td>
+                  <td>\num{-0.15}+ [\num{-0.31}, \num{0.02}]   </td>
+                  <td>\num{-0.16}+ [\num{-0.33}, \num{0.01}]  </td>
+                  <td>\num{-0.19}* [\num{-0.38}, \num{0.00}]  </td>
+                </tr>
+                <tr>
+                  <td>class4         </td>
+                  <td>\num{-0.28}** [\num{-0.48}, \num{-0.08}] </td>
+                  <td>\num{-0.28}** [\num{-0.49}, \num{-0.08}]</td>
+                  <td>\num{-0.32}** [\num{-0.55}, \num{-0.09}]</td>
+                </tr>
+                <tr>
+                  <td>edu2           </td>
+                  <td>\num{-0.06} [\num{-0.18}, \num{0.06}]    </td>
+                  <td>\num{-0.05} [\num{-0.17}, \num{0.07}]   </td>
+                  <td>\num{-0.04} [\num{-0.17}, \num{0.10}]   </td>
+                </tr>
+                <tr>
+                  <td>presid2 × exag2</td>
+                  <td>\num{-0.50}*** [\num{-0.76}, \num{-0.24}]</td>
+                  <td>                                           </td>
+                  <td>                                           </td>
+                </tr>
+                <tr>
+                  <td>presid3 × exag2</td>
+                  <td>\num{0.02} [\num{-0.43}, \num{0.47}]     </td>
+                  <td>                                           </td>
+                  <td>                                           </td>
+                </tr>
+                <tr>
+                  <td>presid2 × exag3</td>
+                  <td>\num{-1.09}*** [\num{-1.50}, \num{-0.68}]</td>
+                  <td>                                           </td>
+                  <td>                                           </td>
+                </tr>
+                <tr>
+                  <td>presid3 × exag3</td>
+                  <td>\num{-0.83}* [\num{-1.46}, \num{-0.20}]  </td>
+                  <td>                                           </td>
+                  <td>                                           </td>
+                </tr>
+                <tr>
+                  <td>R2             </td>
+                  <td>\num{0.595}                                </td>
+                  <td>\num{0.578}                               </td>
+                  <td>\num{0.480}                               </td>
+                </tr>
+                <tr>
+                  <td>R2 Adj.        </td>
+                  <td>\num{0.580}                                </td>
+                  <td>\num{0.564}                               </td>
+                  <td>\num{0.464}                               </td>
                 </tr>
         </tbody>
       </table>
