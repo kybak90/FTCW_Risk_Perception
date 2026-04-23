@@ -1,0 +1,14 @@
+\begin{table}[ht]
+\centering
+\begin{tabular}{llllr}
+  \hline
+presid & exaggerated & not exaggerated & unknown/refusal & Total \\ 
+  \hline
+Well done & 204 (72.3\%) & 55 (19.5\%) & 23 (8.2\%) & 282 \\ 
+  Poorly done & 96 (16.8\%) & 438 (76.7\%) & 37 (6.5\%) & 571 \\ 
+  Neutral/unknown/refusal & 20 (31.2\%) & 34 (53.1\%) & 10 (15.6\%) &  64 \\ 
+   \hline
+\end{tabular}
+\caption{Association between government and information trust} 
+\label{tab:table_s3}
+\end{table}

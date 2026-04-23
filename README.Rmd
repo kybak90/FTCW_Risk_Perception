@@ -1,0 +1,95 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+# Overview
+
+This repository contains the code used for the analysis in the paper:
+
+**"Role of government and information trust in public perception of environmental risk: a case study of treated contaminated water discharge in Fukushima."**
+
+The primary goal of this repository is to ensure **transparency and reproducibility** of the empirical results presented in the study. All scripts included here are designed to replicate the main statistical analyses, figures, and tables reported in the manuscript.
+
+The study investigates how **trust in government and information sources** shapes public perception of environmental risk, focusing on the case of treated contaminated water discharge from Fukushima. Using survey data, we examine the relationship between trust, risk perception, and related covariates through a series of statistical models.
+
+---
+
+## Contents
+
+This repository includes:
+
+- Data preprocessing scripts  
+- Statistical analysis code  
+- Code for generating tables and figures in the manuscript  
+- Figures and tables presented in the manuscript
+
+Due to data sharing restrictions, the raw dataset is not publicly available. However, we provide a detailed mapping table that links (i) variable names in the raw data, (ii) variable names used in the analysis code, and (iii) variable names reported in the manuscript. In addition, this repository includes all code required to reproduce the figures and tables presented in the paper.
+
+Through this setup, readers can transparently trace the full data analysis workflow, from variable construction to final results. While the original data cannot be shared, the structure of the analysis and the logic underlying each step are fully documented and reproducible.
+
+Below, we outline the complete analysis pipeline and provide the corresponding code. For detailed methodological descriptions and formal model specifications, please refer to the manuscript.
+
+---
+
+## Notes
+
+- The code was developed for research purposes and may require adaptation for use in other contexts.  
+- Please refer to the manuscript for detailed methodological explanations and interpretation of results.
+
+---
+
+## Contact
+
+For questions related to the analysis or code in this repository, please contact:
+
+Kwan-Young Bak, Professor  
+Sungshin Women’s University  
+Email: <kybak@sungshin.ac.kr>  
+ORCID: https://orcid.org/0000-0002-4541-160X  
+
+As a co-author of the paper, I am happy to provide clarification on the analysis workflow, variable construction, and implementation details where needed.
+
+---
+
+## R Session Information
+
+All analyses and code in this repository were implemented in **R**. The computational environment used for the analysis is provided below to ensure reproducibility.
+
+
+```{r include=FALSE}
+library(readxl)
+library(gridExtra)
+library(ggplot2)
+library(ggmosaic)
+library(ggpubr)
+library(tidyverse)
+library(dplyr)
+library(corrplot)
+library(modelsummary)
+library(ggeffects)
+library(broom)
+library(xtable)
+library(pals)
+library(naniar)
+library(relaimpo)
+library(vcd)
+library(mice)
+library(tidyr)
+library(knitr)
+library(kableExtra)
+```
+
+
+```{r session}
+sessionInfo()
+```
+

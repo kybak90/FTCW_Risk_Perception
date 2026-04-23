@@ -1,0 +1,209 @@
+---
+title: "Variable Codebook"
+author: "Bak, Kwan-Young"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    theme: cosmo
+    code_folding: hide
+  pdf_document:
+    toc: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+library(tidyverse)
+library(knitr)
+library(kableExtra)
+```
+
+# Overview
+
+This document provides a comprehensive mapping between variable names used in the manuscript and those used in the R analysis code for the study: **"Role of government and information trust in public perception of environmental risk: a case study of treated contaminated water discharge in Fukushima"**.
+
+---
+
+# Main Variable Mapping
+
+```{r main_mapping}
+variable_mapping = tibble(
+  `Manuscript Variable` = c(
+    "Cognitive risk perception (CRP)",
+    "Affective risk perception (ARP)",
+    "Government trust (GT)",
+    "Information trust (IT)",
+    "Residential area",
+    "Sex",
+    "Age",
+    "Occupation",
+    "Economic status",
+    "Educational attainment",
+    "Political ideologies",
+    "Weight"
+  ),
+  
+  `Code Variable` = c(
+    "cog", "aff", "presid", "exag", "ara", "sex", 
+    "age", "job", "class", "edu", "ideo", "wt"
+  ),
+  
+  `Survey Code` = c(
+    "BQ6", "BQ5", "BQ1", "BQ7", "ARA", "SEX", 
+    "AGE", "JOB", "XD2", "XD3", "XD4", "WT2"
+  )
+)
+
+kable(variable_mapping, 
+      caption = "Primary Variable Mapping",
+      booktabs = TRUE) %>%
+  kable_styling(bootstrap_options = c("striped", "hover")) %>%
+  column_spec(1, bold = TRUE, width = "8cm") %>%
+  column_spec(2, monospace = TRUE, color = "darkblue", width = "3cm") %>%
+  column_spec(3, monospace = TRUE, color = "darkgreen", width = "3cm")
+```
+
+---
+
+# Data Transformations
+
+## Missing Value Handling
+
+```{r missing_handling}
+missing_handling = tibble(
+  Variable = c("cog", "aff", "class", "edu", "presid", "ideo", "exag"),
+  `Original Missing Code` = c("9999", "9999", "9999", "9999", "9999", "9999", "9999"),
+  `Transformation` = c("NA", "NA", "NA", "NA", "3", "4", "3"),
+  Rationale = c(
+    "Missing response - excluded from analysis",
+    "Missing response - excluded from analysis",
+    "Missing response - excluded from analysis",
+    "Missing response - excluded from analysis",
+    "Neutral/unknown category created",
+    "Unknown/refusal category created",
+    "Unknown/refusal category created"
+  )
+)
+
+kable(missing_handling, 
+      caption = "Missing Value Handling Strategy") %>%
+  kable_styling(bootstrap_options = c("striped", "hover"))
+```
+
+## Scale Reversals
+
+```{r reversals}
+reversal_info = tibble(
+  Variable = c("cog", "aff"),
+  `Original Scale` = c("1=very likely, 4=not at all likely",
+                       "1=very worried, 4=not worried at all"),
+  `Transformation` = c("-(cog - 5)", "-(aff - 5)"),
+  `New Scale` = c("1=not at all likely, 4=very likely",
+                  "1=not worried at all, 4=very worried"),
+  Reason = c("Align with intuitive interpretation (higher = higher risk)",
+             "Align with intuitive interpretation (higher = more worried)")
+)
+
+kable(reversal_info, 
+      caption = "Scale Reversal Transformations") %>%
+  kable_styling(bootstrap_options = c("striped", "hover"))
+```
+
+## Economic Status Recoding
+
+```{r class_recode}
+cat("Original coding scheme (XD2):")
+cat("\n1 = Upper")
+cat("\n2 = Upper middle")
+cat("\n3 = Middle")
+cat("\n4 = Lower middle")
+cat("\n5 = Lower")
+cat("\n\nTransformation in R:")
+cat("\nclass = ifelse(class %in% c(3, 4, 5), -(class - 6), class + 3)")
+cat("\n\nFinal coding:")
+cat("\n1 = Lower")
+cat("\n2 = Lower middle")
+cat("\n3 = Middle")
+cat("\n4 = Upper/Upper middle")
+```
+
+---
+
+# Category Labels
+
+## Residential Area (ara)
+
+```{r ara_labels}
+ara_df = tibble(
+  Code = 1:8,
+  Label = c("Seoul", "Incheon/Gyeonggi", "Gangwon", 
+            "Daejeon/Sejong/Chungcheong", "Gwangju/Jeolla", 
+            "Daegu/Gyeongbuk", "Busan/Ulsan/Gyeongnam", "Jeju")
+)
+kable(ara_df) %>% kable_styling(bootstrap_options = c("striped", "hover"))
+```
+
+## Age Groups (age)
+
+```{r age_labels}
+age_df = tibble(
+  Code = 1:6,
+  `Age Range` = c("18-29", "30-39", "40-49", "50-59", "60-69", "70+")
+)
+kable(age_df) %>% kable_styling(bootstrap_options = c("striped", "hover"))
+```
+
+## Occupation (job)
+
+```{r job_labels}
+job_df = tibble(
+  Code = 1:7,
+  Category = c("Agriculture/fishery/forestry", "Self-employed", 
+               "Skilled labor/service", "Office/administration", 
+               "Homemaker", "Student", "Unemployed/other")
+)
+kable(job_df) %>% kable_styling(bootstrap_options = c("striped", "hover"))
+```
+
+## Government Trust (presid)
+
+```{r presid_labels}
+presid_df = tibble(
+  Code = 1:3,
+  Category = c("Well done", "Poorly done", "Neutral/unknown/refusal"),
+  `Baseline in Models` = c("Yes (reference)", "No", "No")
+)
+kable(presid_df) %>% kable_styling(bootstrap_options = c("striped", "hover"))
+```
+
+## Information Trust (exag)
+
+```{r exag_labels}
+exag_df = tibble(
+  Code = 1:3,
+  Category = c("Exaggerated", "Not exaggerated", "Unknown/refusal"),
+  `Baseline in Models` = c("Yes (reference)", "No", "No")
+)
+kable(exag_df) %>% kable_styling(bootstrap_options = c("striped", "hover"))
+```
+
+---
+
+# Sample Sizes
+
+```{r sample_info}
+sample_info = tibble(
+  Stage = c("Original survey", "Risk perception responses", 
+            "Complete case (main analysis)", "MICE imputation"),
+  N = c(1002, 933, 917, "10 × 1002"),
+  Description = c("Total participants", 
+                  "Participants who answered risk perception questions",
+                  "Listwise deletion of missing values",
+                  "Multiple imputation datasets")
+)
+
+kable(sample_info, 
+      caption = "Sample Size by Analysis Stage") %>%
+  kable_styling(bootstrap_options = c("striped", "hover"))
+```

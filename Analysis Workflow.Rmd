@@ -1,0 +1,763 @@
+---
+title: "Analysis Code Documentation"
+author: "Bak, Kwan-Young"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    theme: cosmo
+    code_folding: show 
+---
+
+```{r setup, include=FALSE, eval=TRUE}
+knitr::opts_chunk$set(eval = TRUE, echo = TRUE, warning = FALSE, cache = FALSE, cache.lazy = FALSE)
+```
+
+```bash
+📁 FTCW_Risk_Perception/
+ ├── analysis_code.Rmd     
+ │
+ ├── 📁 data/
+ │    └── 23_08.xlsx            # Raw survey data
+ │
+ ├── 📁 figure/               
+ │    ├── rel_imp.pdf           # ✓ Figure 2 (Manuscript)
+ │    ├── interaction_plot.pdf  # ✓ Figure 3 (Manuscript)
+ │    ├── missing_pattern.pdf   # ✓ Figure S1 (Appendix A)
+ │    ├── traceplot.pdf         # ✓ Figure S2 (Appendix A)   
+ │    ├── modelplot_mice.pdf    # Internal diagnostic plot (not in manuscript) 
+ │    └── mosaicplot.pdf        # ✓ Figure S3 (Appendix C) 
+ │
+ └── 📁 latex table/         
+      ├── table_1.txt           # ✓ Table 1 (Manuscript)  
+      ├── table_s2.txt          # ✓ Table S1 (Appendix A)
+      ├── table_s3.txt          # ✓ Table S2 (Appendix B)
+      ├── rp-mice.txt           # ✓ Table S3 (Appendix D)
+      └── rp-interaction.txt    # ✓ Table S4 (Appendix E)
+```
+
+---
+
+
+# Data preperation    
+
+### Data Import 
+```{r message=FALSE}
+rm(list=ls())
+
+library(readxl)
+library(gridExtra)
+library(ggplot2)
+library(ggmosaic)
+library(ggpubr)
+library(tidyverse)
+library(dplyr)
+library(corrplot)
+library(modelsummary)
+library(ggeffects)
+library(broom)
+library(xtable)
+library(pals)
+library(naniar)
+library(relaimpo)
+library(vcd)
+library(mice)
+library(tidyr)
+library(knitr)
+library(kableExtra)
+
+dat = read_xlsx("./data/23_08.xlsx")
+dat0 = dat[,26:30]
+dat1 = dat[,33:35]
+dat2 = dat[,39]
+dat3 = dat[,41:43]
+dat = cbind(dat0, dat1, dat2, dat3)
+colnames(dat)
+```
+
+## data refinement 
+```{r}
+dat = dat %>% rename(ara = ARA, age = AGE, sex = SEX, presid = BQ1,
+                     aff = BQ5, cog = BQ6, exag = BQ7, ideo = XD4,
+                     job = JOB, class = XD2, edu = XD3, wt = WT2)
+colnames(dat)
+```
+
+```{r}
+dim(dat)
+size = nrow(dat)
+dat %>% group_by(cog) %>% summarise(n = n(), prop = n() / size)
+dat %>% group_by(aff) %>% summarise(n = n(), prop = n() / size)
+dat %>% group_by(ara) %>% summarise(n = n(), prop = n() / size)
+dat %>% group_by(age) %>% summarise(n = n(), prop = n() / size)
+dat %>% group_by(sex) %>% summarise(n = n(), prop = n() / size)
+dat %>% group_by(presid) %>% summarise(n = n(), prop = n() / size)
+dat %>% group_by(exag) %>% summarise(n = n(), prop = n() / size)
+dat %>% group_by(ideo) %>% summarise(n = n(), prop = n() / size)
+dat %>% group_by(job) %>% summarise(n = n(), prop = n() / size)
+dat %>% group_by(class) %>% summarise(n = n(), prop = n() / size)
+dat %>% group_by(edu) %>% summarise(n = n(), prop = n() / size)
+```
+
+
+```{r}
+# missing value handling 
+
+dat$cog = replace(dat$cog, dat$cog==9999,NA)
+dat$aff = replace(dat$aff, dat$aff==9999,NA)
+dat$class = replace(dat$class, dat$class==9999,NA)
+dat$edu = replace(dat$edu, dat$edu==9999,NA)
+
+dat$presid = replace(dat$presid, dat$presid==9999,3) # 3 (neutral/unknown/refusal category)
+dat$ideo = replace(dat$ideo, dat$ideo==9999,4) # 4 (unknown/refusal category)
+dat$exag = replace(dat$exag, dat$exag==9999,3) # 3 (unknown/refusal category)
+
+
+# scale reversals
+
+## aff: Higher values = more worried
+dat$aff = -(dat$aff - 5)
+## cog: Higher values = higher perceived likelihood
+dat$cog = -(dat$cog - 5)
+## class: Higher values = higher economic status
+dat$class = ifelse(dat$class %in% c(3, 4, 5), -(dat$class - 6), dat$class + 3)
+```
+
+
+```{r}
+# Check the number of missing values in each column
+colSums((is.na(dat)))
+
+# Count rows with a missing value in either aff or cog
+sum(is.na(dat$aff) | is.na(dat$cog))
+summary(dat)
+
+# missing data visualization 
+vis_miss(dat)
+
+data_na = dat[rowSums(is.na(dat)) == 0, ]
+dim(data_na)
+```
+
+## Dataset Creation
+
+```{r}
+# data_na: Complete case analysis (n=917)
+# Used for: Table 1, Figure 2, Figure 3, Table S3, Table S4
+data_na = data_na %>% mutate(ara = as.factor(ara), age = as.factor(age), sex = as.factor(sex),
+                       job = as.factor(job), ideo = as.factor(ideo), class = as.factor(class), 
+                       edu = as.factor(edu), presid = as.factor(presid),exag = as.factor(exag))
+dim(data_na)
+
+# data: Full dataset with missing values (n=1,002)
+# Used for: MICE imputation (Appendix A)
+data = dat %>% mutate(ara = as.factor(ara), age = as.factor(age), sex = as.factor(sex),
+                       job = as.factor(job), ideo = as.factor(ideo), class = as.factor(class), 
+                       edu = as.factor(edu), presid = as.factor(presid),exag = as.factor(exag))
+dim(data)
+```
+
+# Main Analysis
+
+## Table S2 - Distributional Characteristics of the Data
+
+```{r}
+# ==============================================================================
+# Table S2: Distributional Characteristics of the Data
+# Role: Calculates frequency (N) and proportion (%) for all analytical variables
+# Mapping: [Appendix B] Table S2
+# Output: Saved as './latex table/table_s2.txt'
+# ==============================================================================
+
+dim(data_na)
+size = nrow(data_na)
+data_na %>% group_by(cog) %>% summarise(n = n(), prop = n() / size)
+data_na %>% group_by(aff) %>% summarise(n = n(), prop = n() / size)
+data_na %>% group_by(ara) %>% summarise(n = n(), prop = n() / size)
+data_na %>% group_by(age) %>% summarise(n = n(), prop = n() / size)
+data_na %>% group_by(sex) %>% summarise(n = n(), prop = n() / size)
+data_na %>% group_by(presid) %>% summarise(n = n(), prop = n() / size)
+data_na %>% group_by(exag) %>% summarise(n = n(), prop = n() / size)
+data_na %>% group_by(ideo) %>% summarise(n = n(), prop = n() / size)
+data_na %>% group_by(job) %>% summarise(n = n(), prop = n() / size)
+data_na %>% group_by(class) %>% summarise(n = n(), prop = n() / size)
+data_na %>% group_by(edu) %>% summarise(n = n(), prop = n() / size)
+
+get_summary_df = function(data, var_name, label) {
+  data %>%
+    group_by(!!sym(var_name)) %>%
+    summarise(N = n(), Prop = n() / nrow(data)) %>%
+    mutate(Variable = label) %>%
+    mutate(Category = as.character(!!sym(var_name))) %>% 
+    dplyr::select(Variable, Category, N, Prop)
+}
+
+table_s2_data = bind_rows(
+  get_summary_df(data_na, "cog", "Cognitive risk perception"),
+  get_summary_df(data_na, "aff", "Affective risk perception"),
+  get_summary_df(data_na, "ara", "Residential area"),
+  get_summary_df(data_na, "sex", "Sex"),
+  get_summary_df(data_na, "age", "Age"),
+  get_summary_df(data_na, "job", "Occupation"),
+  get_summary_df(data_na, "class", "Economic status"),
+  get_summary_df(data_na, "edu", "Educational attainment"),
+  get_summary_df(data_na, "ideo", "Political ideologies"),
+  get_summary_df(data_na, "presid", "Government trust"),
+  get_summary_df(data_na, "exag", "Information trust")
+)
+
+sink(file = "./latex table/table_s2.txt")
+
+print(xtable(table_s2_data, 
+             digits = c(0, 0, 0, 0, 3), 
+             caption = "Distributional characteristics of the data",
+             label = "tab:table_s2"),
+      include.rownames = FALSE,
+      hline.after = c(-1, 0, nrow(table_s2_data)),
+      comment = FALSE)
+
+sink(file = NULL)
+```
+
+## Table 1 - Regression analysis of cognitive and affective RP
+
+```{r}
+# ==============================================================================
+# Table 1: Regression analysis of cognitive and affective RP
+# Role: Coefficient estimates from the regression analysis of cognitive and affective RP
+# Mapping: [Manuscript] Table 1
+# Output: Saved as './latex table/table_1.txt'
+# ==============================================================================
+
+fit_cog_na = lm(cog ~ ara + age + sex + presid + exag + ideo + job + class + edu, 
+                data = data_na, weights = data_na$wt)
+fit_aff_na = lm(aff ~ ara + age + sex + presid + exag + ideo + job + class + edu, 
+                      data = data_na, weights = data_na$wt)
+summary(fit_cog_na)
+summary(fit_aff_na)
+
+sink(file = "./latex table/table_1.txt")
+models_main = list("Cognitive RP" = fit_cog_na, 
+                   "Affective RP" = fit_aff_na)
+
+modelsummary(models_main,
+             fmt = 2,
+             stars = TRUE,
+             statistic = NULL,
+             estimate = "{estimate}{stars} [{conf.low}, {conf.high}]",
+             coef_omit = "Intercept",
+             gof_omit = 'Num.Obs.|DF|Deviance|F|Log.Lik.|RMSE|AIC|BIC',
+             title = 'Coefficient estimates for main regression analysis (Table 1).',
+             output = "latex",
+             note = list("+ p < 0.1, * p < 0.05, ** p < 0.01, *** p < 0.001"))
+sink(file = NULL)
+```
+
+## Figure 2 - Relative Importance
+
+```{r}
+# ==============================================================================
+# Figure 2: Relative Importance 
+# Role: Quantifies the contribution of each predictor to the model
+# Mapping: [Manuscript] Figure 2
+# Output: Saved as './figure/rel_imp.pdf'
+# ==============================================================================
+
+pdf("./figure/rel_imp.pdf", width = 12, height = 6)
+
+target_order = c("age", "economic status", "educational attainment", 
+                 "occupation", "political ideologies", "residential area", 
+                 "sex", "trust in government", "trust in information")
+
+## Cognitive RP
+cog_vi = calc.relimp(fit_cog_na, type = "lmg", no.CI = TRUE)
+
+cog_vi_lmg = cog_vi$lmg
+cog_vi_lmg = tibble(var = names(cog_vi_lmg), imp = cog_vi_lmg)
+
+cog_vi_lmg = cog_vi_lmg %>% 
+   mutate(var = case_when(
+      var == "ara" ~ "residential area", 
+      var == "age" ~ "age",
+      var == "sex" ~ "sex",
+      var == "job" ~ "occupation",
+      var == "class" ~ "economic status",
+      var == "edu" ~ "educational attainment",
+      var == "presid" ~ "trust in government",
+      var == "exag" ~ "trust in information",
+      var == "ideo" ~ "political ideologies"
+   )) %>%
+   mutate(var = factor(var, levels = rev(target_order)))
+
+r1 = ggplot(cog_vi_lmg, aes(x = imp, y = var)) + 
+   geom_segment(aes(xend = 0, yend = var), col = "blue", linewidth = 1) + 
+   geom_point(col = "blue", size = 3) +
+   xlim(c(0, 0.3)) + 
+   xlab("") + 
+   ylab("") + 
+   theme_bw(base_size = 15) + 
+   ggtitle("Cognitive RP") +
+   theme(axis.text.y = element_text(vjust = 0.5, size = 13))
+
+## Affective RP
+aff_vi = calc.relimp(fit_aff_na, type = "lmg", no.CI = TRUE)
+
+aff_vi_lmg = aff_vi$lmg 
+aff_vi_lmg = tibble(var = names(aff_vi_lmg), imp = aff_vi_lmg)
+
+aff_vi_lmg = aff_vi_lmg %>% 
+   mutate(var = case_when(
+      var == "ara" ~ "residential area", 
+      var == "age" ~ "age",
+      var == "sex" ~ "sex",
+      var == "job" ~ "occupation",
+      var == "class" ~ "economic status",
+      var == "edu" ~ "educational attainment",
+      var == "presid" ~ "trust in government",
+      var == "exag" ~ "trust in information",
+      var == "ideo" ~ "political ideologies"
+   )) %>%
+   mutate(var = factor(var, levels = rev(target_order)))
+
+r2 = ggplot(aff_vi_lmg, aes(x = imp, y = var)) + 
+   geom_segment(aes(xend = 0, yend = var), col = "blue", linewidth = 1) + 
+   geom_point(col = "blue", size = 3) +
+   xlim(c(0, 0.3)) +
+   xlab("") + 
+   ylab("") +
+   theme_bw(base_size = 15) + 
+   ggtitle("Affective RP") +
+   theme(axis.text.y = element_text(vjust = 0.5, size = 13))
+
+grid.arrange(r1, r2, ncol = 2)
+dev.off()
+```
+
+
+## Figure 3 - Interaction Effects
+
+```{r message=FALSE}
+# ==============================================================================
+# Figure 3: Interaction Effects
+# Role: Visualizes the interactive association between Government Trust (GT) 
+#       and Information Trust (IT) on risk perceptions
+# Mapping: [Manuscript] Figure 3
+# Output: Saved as './figure/interaction_plot.pdf'
+# ==============================================================================
+
+# Fit regression models including the interaction term (presid * exag)
+# Interaction terms test if the effect of GT varies depending on the level of IT
+
+fit_cog_int = lm(cog ~ ara + age + sex + presid + exag + ideo + job + class + edu + presid*exag, data = data_na, weights = wt)
+fit_aff_int = lm(aff ~ ara + age + sex + presid + exag + ideo + job + class + edu + presid*exag, data = data_na, weights = wt)
+
+summary(fit_cog_int)
+summary(fit_aff_int)
+
+
+## Visualization 
+
+barplot_df = data_na %>% mutate(cog = as.numeric(cog), aff = as.numeric(aff)) %>% group_by(presid, exag) %>% summarise(cog = mean(cog), aff = mean(aff))
+
+theme_set(theme_bw())
+
+pdf("./figure/interaction_plot.pdf", width = 27, height = 15)
+
+# Create data frame with all 9 combinations (3 GT levels × 3 IT levels)
+presid_data1 = data.frame(
+  presid = factor(rep(1:3, each = 3)),
+  exag = factor(rep(1:3, 3)),
+  estimate = c(
+    0, 
+    coef(fit_cog_int)["exag2"],
+    coef(fit_cog_int)["exag3"],
+    coef(fit_cog_int)["presid2"],
+    coef(fit_cog_int)["presid2"] + coef(fit_cog_int)["exag2"] + coef(fit_cog_int)["presid2:exag2"],
+    coef(fit_cog_int)["presid2"] + coef(fit_cog_int)["exag3"] + coef(fit_cog_int)["presid2:exag3"],
+    coef(fit_cog_int)["presid3"],
+    coef(fit_cog_int)["presid3"] + coef(fit_cog_int)["exag2"] + coef(fit_cog_int)["presid3:exag2"],
+    coef(fit_cog_int)["presid3"] + coef(fit_cog_int)["exag3"] + coef(fit_cog_int)["presid3:exag3"]
+  )
+)
+
+plot1 = ggplot(presid_data1, aes(x = presid, y = estimate, color = exag, group = exag)) +
+  geom_line(size = 1.5) +  
+  geom_point() +
+  labs(x = "Trust in government",
+       y = "Estimated Effect for Cognitive RP",
+       color = "") +
+  scale_x_discrete(labels = c("well done", "poorly done", "neutral/unknown/refusal")) +
+  scale_color_manual(values=c('#8B0000', '#00008B', '#006400'),
+                    labels = c("exaggerated", "not exaggerated", "unknown/refusal")) +
+  theme(axis.title.x = element_text(size = 40, margin = margin(t = 20, b = 10)),
+          axis.title.y = element_text(size = 35, margin = margin(l = 10, r = 15)),
+          axis.text.x = element_text(size = 32),
+          axis.text.y =element_text(size = 25),
+          axis.ticks.y=element_blank(),
+          legend.text = element_text(size = 32),
+          panel.border = element_rect(color = "black", fill = NA, size = 0.5)) +
+  guides(color = guide_legend(override.aes = list(size = 7))) +
+  ylim(0,2)
+
+
+presid_data2 = data.frame(
+  presid = factor(rep(1:3, each = 3)),
+  exag = factor(rep(1:3, 3)),
+  estimate = c(
+    0, 
+    coef(fit_aff_int)["exag2"],
+    coef(fit_aff_int)["exag3"],
+    coef(fit_aff_int)["presid2"],
+    coef(fit_aff_int)["presid2"] + coef(fit_aff_int)["exag2"] + coef(fit_aff_int)["presid2:exag2"],
+    coef(fit_aff_int)["presid2"] + coef(fit_aff_int)["exag3"] + coef(fit_aff_int)["presid2:exag3"],
+    coef(fit_aff_int)["presid3"],
+    coef(fit_aff_int)["presid3"] + coef(fit_aff_int)["exag2"] + coef(fit_aff_int)["presid3:exag2"],
+    coef(fit_aff_int)["presid3"] + coef(fit_aff_int)["exag3"] + coef(fit_aff_int)["presid3:exag3"]
+  )
+)
+
+plot2 = ggplot(presid_data2, aes(x = presid, y = estimate, color = exag, group = exag)) +
+  geom_line(size = 1.5) +
+  geom_point() +
+  labs(x = "Trust in government",
+       y = "Estimated Effect for Affective RP",
+       color = "") +
+  scale_x_discrete(labels = c("well done", "poorly done", "neutral/unknown/refusal")) +
+  scale_color_manual(values=c('#8B0000', '#00008B', '#006400'),
+                    labels = c("exaggerated", "not exaggerated", "unknown/refusal")) +
+  theme(axis.title.x = element_text(size = 40, margin = margin(t = 20, b = 10)),
+          axis.title.y = element_text(size = 35, margin = margin(l = 10, r = 15)),
+          axis.text.x = element_text(size = 32),
+          axis.text.y =element_text(size = 25),
+          axis.ticks.y=element_blank(),
+          legend.text = element_text(size = 32),
+          panel.border = element_rect(color = "black", fill = NA, size = 0.5))+
+  guides(color = guide_legend(override.aes = list(size = 7))) +
+  ylim(0, 2) 
+
+ggarrange(plot1, plot2, ncol=2, common.legend = TRUE, legend="top")
+dev.off()
+```
+
+
+
+# Multiple Imputation Analysis
+
+## Appendix A - Figures S1
+
+```{r}
+# ==============================================================================
+# Appendix A Figure S1: Missing Data Pattern 
+# Role: Visualizes the structure and frequency of missing values in the dataset
+# Mapping: [Appendix A] Figures S1
+# Output: Saved as './figure/missing_pattern.pdf'
+# ==============================================================================
+
+# Define the matrix for manual missing pattern visualization
+missing_mat = matrix(0, nrow = 12, ncol = 11)
+missing_mat[2, 11] = missing_mat[3, 10] = missing_mat[4, 10:11] = missing_mat[5, 9] =
+  missing_mat[6, c(9,11)] = missing_mat[7, 9:10] = missing_mat[8, 9:11] =
+  missing_mat[9, 8] = missing_mat[10, c(8, 11)] = missing_mat[11, c(8,10,11)] =
+  missing_mat[12, 8:9] = 1
+
+missing_mat = t(missing_mat)
+
+pdf("./figure/missing_pattern.pdf", width = 8, height = 6)
+
+ggplot(reshape2::melt(missing_mat)) +
+  geom_tile(aes(x = Var2, y = Var1, fill = value), color = "white") + 
+  scale_fill_gradient(low = "lightgray", high = "navy") +
+  theme_void() + theme(legend.position = "none") +
+  annotate("text", x = 0, y = 1:11, label = c("residential area", "age", "sex", "trust in government", "trust in information", "political ideologies",  "occupation", "educational attainment", "economic status", "affective RP", "cognitive RP"), hjust = 1, vjust = 0.5) +
+  annotate("text", x = 1:12, y = 12, label = c("917", "47", "7", "6", "9", "1", "1", "4", "5", "2", "1", "2"), hjust = 0.5, vjust = 0.5) + 
+  annotate("text", x = 1:12, y = 0, label = c("0", "1", "1", "2", "1", "2", "2", "3", "1", "2", "3", "2"), hjust = 0.5, vjust = 0.5) +
+  annotate("text", x = 13, y = 1:12, label = c("0", "0", "0", "0", "0", "0", "0", "10", "17", "19", "61", "107"), hjust = 0.5, vjust = 0.5) +
+  xlim(c(-3, 13))
+
+dev.off()
+```
+
+## Appendix A - Figures S2
+
+```{r}
+# ==============================================================================
+# Appendix A Figure S2: Trace plots for the multiple imputation model
+# Role: Performs Multivariate Imputation by Chained Equations (MICE) and 
+#       generates trace plots to ensure algorithm convergence.
+# Mapping: [Appendix A] Figures S2
+# Output: Saved as './figure/traceplot.pdf'
+# ==============================================================================
+
+# Execute MICE algorithm: m=10 datasets, 10 iterations
+imp_data = mice(data = data, m = 10, maxit = 10, seed = 185, print = FALSE)
+
+# Diagnostics: Check convergence via trace plots (mean and sd of imputed values)
+get_trace_df = function(imp_obj) 
+{
+  # mean
+  mean_dat = as.data.frame.table(imp_obj$chainMean)
+  colnames(mean_dat) = c("variable", "iteration", "chain", "value")
+  mean_dat$measure = "mean"
+  
+  # sd
+  sd_dat = as.data.frame.table(sqrt(imp_obj$chainVar))
+  colnames(sd_dat) = c("variable", "iteration", "chain", "value")
+  sd_dat$measure = "sd"
+  
+  bind_rows(mean_dat, sd_dat)
+}
+
+trace_data = get_trace_df(imp_data) 
+
+# Select key variables for Figure S2 visualization
+plot_data = trace_data %>%
+  filter(variable %in% c("aff", "cog", "class", "edu")) %>%
+  mutate(
+    variable = recode(variable, "aff" = "Affective RP", "cog" = "Cognitive RP", "class" = "economic status", "edu" = "educational attainment"),
+    iteration = as.numeric(iteration) 
+  )
+
+# Plotting trace plots
+ggplot(plot_data, aes(x = iteration, y = value, color = chain, group = chain)) +
+  geom_line(alpha = 0.8) + 
+  facet_grid(variable ~ measure, scales = "free") + 
+  theme_bw() + labs(x = "Iteration", y = NULL) +
+  theme(legend.position = "none", strip.text = element_text(face = "bold", size = 11), panel.grid = element_blank())
+
+ggsave("./figure/traceplot.pdf", width = 6, height = 8)
+```
+
+
+## Table S1 - multiple imputation regression model fitting
+
+```{r}
+# ==============================================================================
+# Appendix A Table S1: Multiple Imputation Regression 
+# Role: Fits regression models to each of the 10 imputed datasets and pools 
+#       the results to obtain robust estimates, accounting for missing data
+# Mapping: [Appendix A] Table S1
+# Output: Saved as './latex table/rp-mice.txt'
+# ==============================================================================
+
+# Fit linear models to the imputed data and pool the results
+# Cognitive (CRP)
+fit_cog_mice = with(imp_data, lm(cog ~ ara + age + sex + presid + exag +
+                                 ideo + job + class + edu, weights = wt))
+fit_cog = pool(fit_cog_mice)
+summary(fit_cog)
+pool.r.squared(fit_cog)
+
+
+# Affective RP
+fit_aff_mice = with(imp_data, lm(aff ~ ara + age + sex + presid + exag +
+                                 ideo + job + class + edu, weights = wt))
+fit_aff = pool(fit_aff_mice)
+summary(fit_aff)
+pool.r.squared(fit_aff)
+
+
+sink(file = "./latex table/rp-mice.txt")
+models = list("Cognitive RP" = fit_cog, 
+              "Affective RP" = fit_aff)
+modelsummary(models,
+             fmt = 2,
+             stars = TRUE,
+             statistic = NULL,
+             estimate = c("{estimate}{stars} [{conf.low}, {conf.high}]"),
+             #estimate = c("{estimate}{stars} ({p.value})"),
+             coef_omit = "Intercept",
+             gof_omit = 'Num.Obs.|DF|Deviance|F|Log.Lik.|RMSE|AIC|BIC',
+             title = 'Coefficients estimates (with confidence intervals in parantheses) of multiple imputation regression analysis for cognitive and affective risk perception.',
+             output = "latex",
+             note = list("+ p $<$ 0.1, * p $<$ 0.05, ** p $<$ 0.01, *** p $<$ 0.001"))
+sink(file = NULL)
+
+
+# Visualize pooled coefficient estimates (Model Plot)
+
+pdf("./figure/modelplot_mice.pdf", width = 12, height = 6)
+  
+p1 = modelplot(fit_cog, conf_level = .95, coef_omit = "Intercept") +
+   aes(color = ifelse(p.value < 0.05, "Significant", "Not significant")) +
+   scale_color_manual(values = c("gray", "blue")) +
+   geom_vline(xintercept = 0, color = 'orange') +
+   guides(color=guide_legend(title="Significance")) +
+   theme(legend.position = "none") +
+   xlim(c(-1, 1.2)) +
+   ggtitle("Cognitive RP")
+
+p2 = modelplot(fit_aff, conf_level = .95, coef_omit = "Intercept") +
+   aes(color = ifelse(p.value < 0.05, "Significant", "Not significant")) +
+   scale_color_manual(values = c("gray", "blue")) +
+   geom_vline(xintercept = 0, color = 'orange') +
+   guides(color=guide_legend(title="Significance")) +
+   theme(legend.position = "none") +
+   xlim(c(-1, 1.2)) +
+   ggtitle("Affective RP")
+
+grid.arrange(p1, p2, ncol = 2)
+dev.off()
+```
+
+
+```{r message=FALSE}
+# ------------------------------------------------------------------------------
+# Pooled Correlation Analysis 
+# Role: Calculates the pooled Pearson and Spearman correlations between CRP and ARP 
+#       across all imputed datasets to validate the relationship between the two DVs.
+# Output: Correlation coefficients displayed in the R Console
+# ------------------------------------------------------------------------------
+
+library(psych)
+library(mitools)
+library(miceadds)
+
+miceadds::micombine.cor(mi.res = imp_data, variables = c("cog", "aff"), method = "pearson")
+miceadds::micombine.cor(mi.res = imp_data, variables = c("cog", "aff"), method = "spearman")
+```
+
+
+## Figure S3 - mosaic plot 
+
+```{r}
+# ==============================================================================
+# Figure S3: Mosaic Plot of Trust Associations
+# Role: Visualizes the conditional distribution and associational relationship between GT and IT
+# Mapping: [Appendix C] Figure S3
+# Output: Saved as './figure/mosaicplot.pdf'.
+# ==============================================================================
+
+data_complete = data_na %>% mutate(cog = factor(cog), aff = factor(aff))
+data_complete$presid = factor(data_complete$presid, levels = c(1, 2, 3),
+                          labels = c("well done", "poorly done", "neutral/unknown/refusal"))
+
+theme_set(theme_bw())
+
+pdf("./figure/mosaicplot.pdf", width = 12, height = 8)
+
+ggplot(data = data_complete) + 
+    geom_mosaic(aes(x = product(exag, presid), fill = exag)) + 
+    theme_minimal() +
+    scale_x_productlist(name = "Trust in government") + 
+    scale_y_productlist(name = "Trust in information") + 
+    labs(fill = "exag") +
+    theme(axis.title.x = element_text(size = 25, margin = margin(t = 20, b = 10)),
+          axis.title.y = element_text(size = 25, margin = margin(l = 10, r = 15)),
+          axis.text.x = element_text(size = 20),
+          axis.text.y = element_blank(),
+          axis.ticks.y=element_blank(),
+          legend.text = element_text(size = 17),
+          panel.border = element_rect(color = "black", fill = NA, size = 0.5)) +
+    scale_fill_manual(' ', values=c('#8B0000', '#00008B', '#006400'),
+                      labels = c("exaggerated", "not exaggerated", "unknown/refusal")) 
+
+dev.off()
+```
+
+
+## Table S3: Association between government and information trust
+
+```{r}
+# ==============================================================================
+# Table S3: Association between Government and Information Trust
+# Role: Creates a cross-tabulation table showing the frequency and row-wise 
+#       percentage to analyze the relationship between GT and IT
+# Mapping: [Appendix D] Table S3
+# Output: Saved as './latex table/table_s3.txt'
+# ==============================================================================
+
+# Generate the contingency table with frequency and percentage
+table_s3 = data_na %>%
+  mutate(
+    presid = factor(presid, levels = c(1, 2, 3), 
+                    labels = c("Well done", "Poorly done", "Neutral/unknown/refusal")),
+    exag = factor(exag, levels = c(1, 2, 3), 
+                  labels = c("exaggerated", "not exaggerated", "unknown/refusal"))
+  ) %>%
+  count(presid, exag) %>%
+  group_by(presid) %>%
+  mutate(
+    pct = n / sum(n) * 100,
+    cell = sprintf("%d (%.1f%%)", n, pct) 
+  ) %>%
+  dplyr::select(presid, exag, cell) %>% 
+  pivot_wider(names_from = exag, values_from = cell)
+
+# Add Row Totals
+totals = data_na %>%
+  mutate(presid = factor(presid, levels = c(1, 2, 3), 
+                         labels = c("Well done", "Poorly done", "Neutral/unknown/refusal"))) %>%
+  count(presid) %>%
+  rename(Total = n)
+
+table_s3 = table_s3 %>% left_join(totals, by = "presid")
+
+sink(file = "./latex table/table_s3.txt")
+
+print(xtable(table_s3, 
+             caption = "Association between government and information trust",
+             label = "tab:table_s3"),
+      include.rownames = FALSE,
+      hline.after = c(-1, 0, nrow(table_s3)),
+      comment = FALSE)
+
+sink(file = NULL)
+
+print(table_s3)
+```
+
+## Table S4: Regression models including the interaction
+
+```{r}
+# ==============================================================================
+# Table S4: Regression Models Including the Interaction
+# Role: Summarizes the full regression results for models containing the interaction term between GT and IT
+# Mapping:  [Appendix E] Table S4
+# Output: Saved as './latex table/rp-interaction.txt'
+# ==============================================================================
+
+models_int = list("Cognitive RP" = fit_cog_int, 
+                  "Affective RP" = fit_aff_int)
+
+sink(file = "./latex table/rp-interaction.txt")
+modelsummary(models_int,
+             fmt = 2,
+             stars = TRUE,
+             statistic = NULL,
+             estimate = c("{estimate}{stars} [{conf.low}, {conf.high}]"),
+             coef_omit = "Intercept",
+             gof_omit = 'Num.Obs.|DF|Deviance|F|Log.Lik.|RMSE|AIC|BIC',
+             title = 'Coefficient estimates (with confidence intervals in parentheses) of regression analysis for cognitive and affective risk perception including the interaction between government and information trust.',
+             output = "latex",
+             note = list("+ p < 0.1, * p < 0.05, ** p < 0.01, *** p < 0.001"))
+sink(file = NULL)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

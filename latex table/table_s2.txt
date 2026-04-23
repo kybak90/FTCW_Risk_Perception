@@ -1,0 +1,58 @@
+\begin{table}[ht]
+\centering
+\begin{tabular}{llrr}
+  \hline
+Variable & Category & N & Prop \\ 
+  \hline
+Cognitive risk perception & 1 & 98 & 0.107 \\ 
+  Cognitive risk perception & 2 & 103 & 0.112 \\ 
+  Cognitive risk perception & 3 & 234 & 0.255 \\ 
+  Cognitive risk perception & 4 & 482 & 0.526 \\ 
+  Affective risk perception & 1 & 117 & 0.128 \\ 
+  Affective risk perception & 2 & 96 & 0.105 \\ 
+  Affective risk perception & 3 & 148 & 0.161 \\ 
+  Affective risk perception & 4 & 556 & 0.606 \\ 
+  Residential area & 1 & 177 & 0.193 \\ 
+  Residential area & 2 & 301 & 0.328 \\ 
+  Residential area & 3 & 28 & 0.031 \\ 
+  Residential area & 4 & 88 & 0.096 \\ 
+  Residential area & 5 & 90 & 0.098 \\ 
+  Residential area & 6 & 82 & 0.089 \\ 
+  Residential area & 7 & 138 & 0.150 \\ 
+  Residential area & 8 & 13 & 0.014 \\ 
+  Sex & 1 & 478 & 0.521 \\ 
+  Sex & 2 & 439 & 0.479 \\ 
+  Age & 1 & 165 & 0.180 \\ 
+  Age & 2 & 151 & 0.165 \\ 
+  Age & 3 & 164 & 0.179 \\ 
+  Age & 4 & 184 & 0.201 \\ 
+  Age & 5 & 166 & 0.181 \\ 
+  Age & 6 & 87 & 0.095 \\ 
+  Occupation & 1 & 20 & 0.022 \\ 
+  Occupation & 2 & 154 & 0.168 \\ 
+  Occupation & 3 & 132 & 0.144 \\ 
+  Occupation & 4 & 309 & 0.337 \\ 
+  Occupation & 5 & 137 & 0.149 \\ 
+  Occupation & 6 & 70 & 0.076 \\ 
+  Occupation & 7 & 95 & 0.104 \\ 
+  Economic status & 1 & 88 & 0.096 \\ 
+  Economic status & 2 & 170 & 0.185 \\ 
+  Economic status & 3 & 514 & 0.561 \\ 
+  Economic status & 4 & 145 & 0.158 \\ 
+  Educational attainment & 1 & 323 & 0.352 \\ 
+  Educational attainment & 2 & 594 & 0.648 \\ 
+  Political ideologies & 1 & 262 & 0.286 \\ 
+  Political ideologies & 2 & 339 & 0.370 \\ 
+  Political ideologies & 3 & 214 & 0.233 \\ 
+  Political ideologies & 4 & 102 & 0.111 \\ 
+  Government trust & 1 & 282 & 0.308 \\ 
+  Government trust & 2 & 571 & 0.623 \\ 
+  Government trust & 3 & 64 & 0.070 \\ 
+  Information trust & 1 & 320 & 0.349 \\ 
+  Information trust & 2 & 527 & 0.575 \\ 
+  Information trust & 3 & 70 & 0.076 \\ 
+   \hline
+\end{tabular}
+\caption{Distributional characteristics of the data} 
+\label{tab:table_s2}
+\end{table}
