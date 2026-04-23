@@ -738,29 +738,96 @@ modelsummary(models_int,
 sink(file = NULL)
 ```
 
+## Table S5 and Table S6:
+```{r}
+# ==============================================================================
+# Table S5: 
+# Table S6: 
+# Role: 
+# Mapping:  [Appendix F] Table S5 and Table S6
+# Output: 
+# ==============================================================================
+
+fit_cog_full = lm(
+  cog ~ ara + age + sex + presid + exag + ideo + job + class + edu + presid*exag,
+  data = data_na,
+  weights = wt
+)
+
+fit_cog_main = lm(
+  cog ~ ara + age + sex + presid + exag + ideo + job + class + edu,
+  data = data_na,
+  weights = wt
+)
+
+fit_cog_noIT = lm(
+  cog ~ ara + age + sex + presid + ideo + job + class + edu,
+  data = data_na,
+  weights = wt
+)
+
+fit_aff_full = lm(
+  aff ~ ara + age + sex + presid + exag + ideo + job + class + edu + presid*exag,
+  data = data_na,
+  weights = wt
+)
+
+fit_aff_main = lm(
+  aff ~ ara + age + sex + presid + exag + ideo + job + class + edu,
+  data = data_na,
+  weights = wt
+)
+
+fit_aff_noIT = lm(
+  aff ~ ara + age + sex + presid + ideo + job + class + edu,
+  data = data_na,
+  weights = wt
+)
+
+models_cog = list(
+  "Full" = fit_cog_full,
+  "No interaction" = fit_cog_main,
+  "No IT" = fit_cog_noIT
+)
+
+sink(file = "./latex table/rp-sensitivity-cog.txt")
+
+modelsummary(
+  models_cog,
+  fmt = 2,
+  stars = TRUE,
+  statistic = NULL,
+  estimate = "{estimate}{stars} [{conf.low}, {conf.high}]",
+  coef_omit = "Intercept",
+  gof_omit = "Num.Obs.|DF|Deviance|F|Log.Lik.|RMSE|AIC|BIC",
+  title = "Cognitive risk perception: sensitivity analysis across alternative model specifications.",
+  output = "latex",
+  notes = list("+ p < 0.1, * p < 0.05, ** p < 0.01, *** p < 0.001")
+)
+
+sink(file = NULL)
 
 
+models_aff = list(
+  "Full" = fit_aff_full,
+  "No interaction" = fit_aff_main,
+  "No IT" = fit_aff_noIT
+)
 
+sink(file = "./latex table/rp-sensitivity-aff.txt")
 
+modelsummary(
+  models_aff,
+  fmt = 2,
+  stars = TRUE,
+  statistic = NULL,
+  estimate = "{estimate}{stars} [{conf.low}, {conf.high}]",
+  coef_omit = "Intercept",
+  gof_omit = "Num.Obs.|DF|Deviance|F|Log.Lik.|RMSE|AIC|BIC",
+  title = "Affective risk perception: sensitivity analysis across alternative model specifications.",
+  output = "latex",
+  notes = list("+ p < 0.1, * p < 0.05, ** p < 0.01, *** p < 0.001")
+)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+sink(file = NULL)
+```
