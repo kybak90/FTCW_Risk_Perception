@@ -1,0 +1,51 @@
+\begin{table}
+\centering
+\begin{talltblr}[         %% tabularray outer open
+caption={Coefficients estimates (with confidence intervals in parantheses) of multiple imputation regression analysis for cognitive and affective risk perception.},
+note{}={+ p \$<\$ 0.1, * p \$<\$ 0.05, ** p \$<\$ 0.01, *** p \$<\$ 0.001},
+]                     %% tabularray outer close
+{                     %% tabularray inner open
+colspec={Q[]Q[]Q[]},
+column{1}={halign=l,},
+column{2}={halign=c,},
+column{3}={halign=c,},
+hline{32}={1,2,3}{solid, 0.05em, black},
+}                     %% tabularray inner close
+\toprule
+& Cognitive RP & Affective RP \\ \midrule %% TinyTableHeader
+ara2     & \num{-0.02} [\num{-0.15}, \num{0.11}]    & \num{-0.04} [\num{-0.18}, \num{0.09}]    \\
+ara3     & \num{-0.09} [\num{-0.39}, \num{0.20}]    & \num{-0.28}+ [\num{-0.56}, \num{0.01}]   \\
+ara4     & \num{-0.02} [\num{-0.18}, \num{0.15}]    & \num{0.05} [\num{-0.13}, \num{0.23}]     \\
+ara5     & \num{0.09} [\num{-0.08}, \num{0.27}]     & \num{0.06} [\num{-0.12}, \num{0.24}]     \\
+ara6     & \num{-0.21}* [\num{-0.39}, \num{-0.03}]  & \num{-0.12} [\num{-0.31}, \num{0.06}]    \\
+ara7     & \num{-0.03} [\num{-0.19}, \num{0.13}]    & \num{-0.06} [\num{-0.23}, \num{0.11}]    \\
+ara8     & \num{-0.01} [\num{-0.41}, \num{0.38}]    & \num{-0.35} [\num{-0.76}, \num{0.07}]    \\
+age2     & \num{0.12} [\num{-0.06}, \num{0.30}]     & \num{0.09} [\num{-0.10}, \num{0.28}]     \\
+age3     & \num{0.08} [\num{-0.10}, \num{0.26}]     & \num{0.01} [\num{-0.18}, \num{0.20}]     \\
+age4     & \num{-0.02} [\num{-0.20}, \num{0.16}]    & \num{-0.06} [\num{-0.25}, \num{0.12}]    \\
+age5     & \num{-0.09} [\num{-0.27}, \num{0.10}]    & \num{-0.06} [\num{-0.25}, \num{0.14}]    \\
+age6     & \num{-0.02} [\num{-0.26}, \num{0.22}]    & \num{-0.03} [\num{-0.26}, \num{0.20}]    \\
+sex2     & \num{0.23}*** [\num{0.13}, \num{0.33}]   & \num{0.18}** [\num{0.07}, \num{0.28}]    \\
+presid2  & \num{0.87}*** [\num{0.74}, \num{1.01}]   & \num{1.06}*** [\num{0.93}, \num{1.19}]   \\
+presid3  & \num{0.64}*** [\num{0.45}, \num{0.83}]   & \num{0.83}*** [\num{0.63}, \num{1.03}]   \\
+exag2    & \num{0.78}*** [\num{0.67}, \num{0.89}]   & \num{0.83}*** [\num{0.71}, \num{0.95}]   \\
+exag3    & \num{0.50}*** [\num{0.33}, \num{0.67}]   & \num{0.70}*** [\num{0.53}, \num{0.88}]   \\
+ideo2    & \num{0.05} [\num{-0.07}, \num{0.17}]     & \num{0.03} [\num{-0.10}, \num{0.15}]     \\
+ideo3    & \num{0.12}+ [\num{-0.02}, \num{0.25}]    & \num{0.06} [\num{-0.08}, \num{0.20}]     \\
+ideo4    & \num{0.10} [\num{-0.05}, \num{0.26}]     & \num{-0.01} [\num{-0.18}, \num{0.16}]    \\
+job2     & \num{-0.21} [\num{-0.54}, \num{0.11}]    & \num{-0.35}* [\num{-0.68}, \num{-0.01}]  \\
+job3     & \num{-0.29}+ [\num{-0.61}, \num{0.03}]   & \num{-0.41}* [\num{-0.74}, \num{-0.07}]  \\
+job4     & \num{-0.31}+ [\num{-0.63}, \num{0.01}]   & \num{-0.38}* [\num{-0.72}, \num{-0.05}]  \\
+job5     & \num{-0.19} [\num{-0.52}, \num{0.13}]    & \num{-0.25} [\num{-0.59}, \num{0.09}]    \\
+job6     & \num{-0.42}* [\num{-0.80}, \num{-0.03}]  & \num{-0.56}** [\num{-0.96}, \num{-0.16}] \\
+job7     & \num{-0.35}* [\num{-0.68}, \num{-0.02}]  & \num{-0.41}* [\num{-0.75}, \num{-0.06}]  \\
+class2   & \num{-0.19}* [\num{-0.37}, \num{0.00}]   & \num{-0.16}+ [\num{-0.34}, \num{0.03}]   \\
+class3   & \num{-0.19}* [\num{-0.36}, \num{-0.03}]  & \num{-0.20}* [\num{-0.36}, \num{-0.03}]  \\
+class4   & \num{-0.35}** [\num{-0.56}, \num{-0.14}] & \num{-0.31}** [\num{-0.51}, \num{-0.11}] \\
+edu2     & \num{-0.04} [\num{-0.15}, \num{0.08}]    & \num{-0.06} [\num{-0.18}, \num{0.05}]    \\
+Num.Imp. & \num{10}                                   & \num{10}                                   \\
+R2       & \num{0.548}                                & \num{0.562}                                \\
+R2 Adj.  & \num{0.534}                                & \num{0.549}                                \\
+\bottomrule
+\end{talltblr}
+\end{table} 

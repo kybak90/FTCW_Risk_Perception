@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# Overview
+## Overview
 
 This repository contains the code used for the analysis in the paper:
 
@@ -19,6 +19,22 @@ sources** shapes public perception of environmental risk, focusing on
 the case of treated contaminated water discharge from Fukushima. Using
 survey data, we examine the relationship between trust, risk perception,
 and related covariates through a series of statistical models.
+
+------------------------------------------------------------------------
+
+## Contact
+
+For questions related to the analysis or code in this repository, please
+contact:
+
+Kwan-Young Bak, Professor  
+Sungshin Women’s University  
+Email: <kybak@sungshin.ac.kr>  
+ORCID: <https://orcid.org/0000-0002-4541-160X>
+
+As a co-author of the paper, I am happy to provide clarification on the
+analysis workflow, variable construction, and implementation details
+where needed.
 
 ------------------------------------------------------------------------
 
@@ -58,19 +74,59 @@ model specifications, please refer to the manuscript.
 
 ------------------------------------------------------------------------
 
-## Contact
+## Repository Structure
 
-For questions related to the analysis or code in this repository, please
-contact:
+The repository is organized to reflect the full analysis workflow,
+including code and outputs corresponding to the manuscript. The dataset
+used here is not publicly available.
 
-Kwan-Young Bak, Professor  
-Sungshin Women’s University  
-Email: <kybak@sungshin.ac.kr>  
-ORCID: <https://orcid.org/0000-0002-4541-160X>
+``` bash
+📁 FTCW_Risk_Perception/
+├── Analysis Workflow.Rmd      # Main analysis script (reproduces all results)
+├── Analysis-Workflow.html     # Rendered HTML of the main analysis
+├── Variable Codebook.Rmd      # Variable mapping and data processing details
+├── Variable-Codebook.html     # Rendered HTML of the variable codebook
+│
+├── 📁 data/
+│   └── 23_08.xlsx         # Raw survey data (not publicly distributable)
+│
+├── 📁 figure/
+│   ├── rel_imp.pdf          # ✓ Figure 2 (Manuscript)
+│   ├── interaction_plot.pdf # ✓ Figure 3 (Manuscript)
+│   ├── missing_pattern.pdf  # ✓ Figure S1 (Appendix A)
+│   ├── traceplot.pdf        # ✓ Figure S2 (Appendix A)
+│   ├── modelplot_mice.pdf   # Internal diagnostic plot (not in manuscript)
+│   └── mosaicplot.pdf       # ✓ Figure S3 (Appendix C)
+│
+└── 📁 latex_table/
+    ├── table_1.txt          # ✓ Table 1 (Manuscript)
+    ├── table_s2.txt         # ✓ Table S1 (Appendix A)
+    ├── table_s3.txt         # ✓ Table S2 (Appendix B)
+    ├── rp-mice.txt          # ✓ Table S3 (Appendix D)
+    └── rp-interaction.txt   # ✓ Table S4 (Appendix E)
+```
 
-As a co-author of the paper, I am happy to provide clarification on the
-analysis workflow, variable construction, and implementation details
-where needed.
+### Description
+
+- **Analysis Workflow.Rmd** A single, integrated R Markdown file that
+  contains the complete analysis pipeline, from data preprocessing to
+  final model estimation and output generation. See
+  **Analysis-Workflow.html** for the rendered output.
+
+- **Variable Codebook.Rmd** An R Markdown file that generates
+  **Variable-Codebook.html**, which documents the detailed mapping of
+  variables used in the analysis, along with key preprocessing steps.
+
+- **data/** Contains the original survey dataset used in the study. Due
+  to data sharing restrictions, this file is not publicly accessible.
+
+- **figure/** Includes all figures generated in the analysis. Each file
+  is directly mapped to the corresponding figure in the manuscript or
+  appendix.
+
+- **latex_table/** Contains text files of LaTeX-formatted tables used in
+  the manuscript and appendices, allowing direct integration into the
+  paper.
 
 ------------------------------------------------------------------------
 
