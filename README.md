@@ -14,6 +14,8 @@ reproducibility** of the empirical results presented in the study. All
 scripts included here are designed to replicate the main statistical
 analyses, figures, and tables reported in the manuscript.
 
+In addition to the analysis code, this repository includes the full survey protocol and questionnaire used to collect the data, providing transparency in both data collection and measurement.
+
 The study investigates how **trust in government and information
 sources** shapes public perception of environmental risk, focusing on
 the case of treated contaminated water discharge from Fukushima. Using
