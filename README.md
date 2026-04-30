@@ -9,8 +9,8 @@ This repository contains the survey details and code used for the analysis in th
 environmental risk: a case study of treated contaminated water discharge
 in Fukushima.”**
 
-The primary goal of this repository is to ensure **transparency and
-reproducibility** of the empirical results presented in the study. All
+The primary goal of this repository is to ensure **transparency** and facilitate
+**reproducibility** of the empirical results presented in the study. All
 scripts included here are designed to replicate the main statistical
 analyses, figures, and tables reported in the manuscript.
 
@@ -127,8 +127,8 @@ used here is not publicly available.
   **Variable-Codebook.html**, which documents the detailed mapping of
   variables used in the analysis, along with key preprocessing steps.
 
-- **data/** Contains the original survey dataset used in the study. Due
-  to data sharing restrictions, this file is not publicly accessible.
+- **data/** Placeholder directory for the original survey dataset used in the study.
+  The raw data are not included due to data sharing restrictions.
 
 - **figure/** Includes all figures generated in the analysis. Each file
   is directly mapped to the corresponding figure in the manuscript or
