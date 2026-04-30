@@ -92,7 +92,7 @@ used here is not publicly available.
 ├── Variable-Codebook.html      # Rendered HTML of the variable codebook
 │
 ├── 📁 data/
-│   └── 23_08.xlsx              # Raw survey data (not publicly distributable)
+│   └── 23_08.xlsx              # (placeholder) Raw survey data (not included)
 │
 ├── 📁 figure/
 │   ├── rel_imp.pdf             # ✓ Figure 2 (Manuscript)
