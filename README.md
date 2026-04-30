@@ -3,7 +3,7 @@
 
 ## Overview
 
-This repository contains the code used for the analysis in the paper:
+This repository contains the survey details and code used for the analysis in the paper:
 
 **“Role of government and information trust in public perception of
 environmental risk: a case study of treated contaminated water discharge
@@ -42,6 +42,7 @@ where needed.
 
 This repository includes:
 
+- Survey protocol and questionnaire
 - Data preprocessing scripts  
 - Statistical analysis code  
 - Code for generating tables and figures in the manuscript  
@@ -82,6 +83,7 @@ used here is not publicly available.
 
 ``` bash
 📁 FTCW_Risk_Perception/
+├── Survey Details.docx         # Survey protocol and questionnaire used to collect the data
 ├── Analysis Workflow.Rmd       # Main analysis script (reproduces all results)
 ├── Analysis-Workflow.html      # Rendered HTML of the main analysis
 ├── Variable Codebook.Rmd       # Variable mapping and data processing details
@@ -109,6 +111,10 @@ used here is not publicly available.
 ```
 
 ### Description
+
+- **Survey Details.docx:** A document providing the full survey protocol and questionnaire used to collect the data.
+  It includes details on the survey framework, sampling design, data collection procedures, weighting, and regulatory compliance,
+  as well as the complete list of survey questions and response options.
 
 - **Analysis Workflow.Rmd:** A single, integrated R Markdown file that
   contains the complete analysis pipeline, from data preprocessing to
